@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>WDIM387 Advanced Scripting, Week 2</title>
+		<script type="text/javascript" src="scripts/highlight/highlight.js"></script>
+		<script type="text/javascript">
+			hljs.initHighlightingOnLoad('php','javascript');
+		</script>
+		<link type="text/css" rel="stylesheet" href="styles/highlight.css" />
+		<link type="text/css" rel="stylesheet" href="styles/common.css" media="all" />
+		<link type="text/css" rel="stylesheet" href="styles/projection.css" media="projection" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>WDIM387 Advanced Scripting <span>with Peter Wooley</span></h1>
+			<p class="tagline">The <q>Scripting</q> Class, Week 2</p>
+		</div>
+		
+		<h2>Using source control management software</h2>
+		<ul>
+			<li><a href="http://en.wikipedia.org/wiki/Revision_control">Revision control</a> (or version control, source control, source control management, source code management) is the management of changes in files.</li>
+			<li>A Typical revision control system will allow you to compare, restore, and merge various files.</li>
+			<li>Revision control systems typically store changes in files as <a href="http://en.wikipedia.org/wiki/Delta_compression">deltas</a>&mdash;the difference between two file states.</li>
+			<li>The simplest form of revision control is storing backups of your files as you make changes (e.g., <code>index_01.html</code>, <code>index_02.html</code>, <code>index_03.html</code>, etc.)</li>
+		</ul>
+		
+		<h2>Types of revision control</h2>
+		<ul>
+			<li>Client-Server
+				<ul>
+					<li>All changes to code exist in a server-side repository.</li>
+					<li>Changes are <code>commit</code>'d to the server through clients.</li>
+					<li>Client repositories must be <code>update</code>'d from the server.</li>
+					<li>If the same file is modified by two users, upon <code>commit</code>, the file is <code>merged</code>.</li>
+				</ul>
+			</li>
+			<li>Distributed
+				<ul>
+					<li>All changes to code exist in a client-side repository.</li>
+					<li>Changes are <code>commit</code>'d to the local repository, and <code>push</code>'d to other repositories.</li>
+					<li>Client repositories can <code>pull</code> changes from other repositories.</li>
+					<li>If the same file is modified by two users, upon <code>push</code> or <code>pull</code>, the file is <code>merged</code>.</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Revision control software</h2>
+		<ul>		
+			<li>Some superb revision control systems are:
+				<ul>
+					<li>Client-Server
+						<ul>
+							<li><a href="http://bazaar-vcs.org/">Bazaar</a></li>
+							<li><a href="http://subversion.tigris.org/"><em>Subversion</em></a></li>
+							<li><a href="http://www.adobe.com/products/creativesuite/versioncue/">Version Cue</a></li>
+						</ul>
+					</li>
+					<li>Distributed
+						<ul>
+							<li><a href="http://darcs.net/">darcs</a></li>
+							<li><a href="http://git-scm.com/"><em>git</em></a></li>
+							<li><a href="http://www.selenic.com/mercurial/">Mercurial</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Use revision control</h2>
+		<ul>
+			<li>This term, you're required to use source control for your final project.</li>
+			<li>The system or software is your decision.</li>
+			<li>Feel free to make use of software and services that make revision control simple.</li>
+			<li>I'll be making class notes available in a git repository.</li>
+		</ul>
+		
+		<h2>How to use revision control</h2>
+		<ul>
+			<li>Let's try it out!</li>
+			<li>The revision software that took the world by storm recently is git. We'll use that.</li>
+			<li>Several places host revision repositories&mdash;some do it for free.</li>
+			<li>Although the project must be open source to be free, <a href="http://github.com">GitHub</a> is a great solution.</li>
+			<li>We'll create an SSH key, sign up for an account, create a repository, then figure out how to actually use it.</li>
+		</ul>
+		
+		<h2>Setting Up</h2>
+		<ul>
+			<li>Windows
+				<ul>
+					<li>Load <a href="assets/Git-1.7.0.2-preview20100309.exe"><code>assets/Git-1.7.0.2-preview20100309.exe</code></a>.</li>
+					<li>Open Start &raquo; Git &raquo; Git Bash</li>
+					<li>Follow along with setting up the GitHub account...</li>
+				</ul>
+			</li>
+			<li>OS X
+				<ul>
+					<li>Download and install the latest <a href="http://code.google.com/p/git-osx-installer/downloads/list">git-osx-installer</a>.</li>
+					<li>Open Terminal</li>
+					<li>Follow along with setting up the GitHub account...</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Writing &amp; generating API documentation</h2>
+		<ul>
+			<li>Carefully documenting your code, in a standard way, is extremely helpful.</li>
+			<li><a href="http://en.wikipedia.org/wiki/JSDoc">JSDoc</a> gives that standard and <a href="http://code.google.com/p/jsdoc-toolkit/">jsdoc-toolkit</a> is the tool that'll make your documentation process <em>simple</em>.</li>
+			<li>A bit of JSDoc documentation to admire:
+				<pre><code class="javascript">/**
+ * Creates a SearchApp that adds live searching to a supplied table of data.
+ * @class Searches table and manages visibilty of applicable search results.
+ * @version 1.1
+ *
+ * @property {Object} self Internal reference to &lt;code&gt;this&lt;/code&gt;.
+ * @property {Object} root jQuery DOM Reference to root node for instance
+ *
+ * @param {Object} $element The root jQuery DOM reference, containing the search field and table of data.
+ */
+function SearchApp($element) {
+	var self = this;
+	this.root = $element;
+	
+	/**
+	 * Searches through all table data for the supplied search term, hiding all rows that do not match.
+	 * @returns {null} Does not return a value.
+	 */
+	this.search = function(event) {
+		$('tbody tr', self.root.children('.list')).show().not(":contains(" + $(this).val() + ")").hide();
+	}
+	
+	$('input', this.root).keyup(this.search);
+	$('[type=submit]', this.root).hide();
+}</code></pre>
+			</li>
+		</ul>
+		
+		<h2>Generating the documentation</h2>
+		<ul>
+			<li>Unzip the <a href="assets/jsdoc_toolkit-2.1.0.zip">assets/jsdoc_toolkit-2.1.0.zip</a> file.</li>
+			<li>Move the <code>jsdoc-toolkit</code> folder into <code>examples/doc/</code>.</li>
+			<li>Copy the <a href="assets/open.bat">assets/open.bat</a> into the <code>jsdoc-toolkit</code> folder.</li>
+			<li>Launch <code>open.bat</code>.</li>
+			<li>Generate the <code>SearchApp.js</code> documentation
+				<pre><code>java -jar jsrun.jar app\run.js -a -t=templates\jsdoc ..\SearchApp.js</code></pre>
+			</li>
+			<li>Navigate to the <a href="examples/doc/jsdoc-toolkit/out/jsdoc/index.html">out/jsdoc/index.html</a> file in your browser.</li>
+		</ul>
+		
+		<h2>Using documentation</h2>
+		<ul>
+			<li>I want to see your documentation, especially, for your server-side code.</li>
+			<li>Generating documentation for PHP can be done with <a href="http://www.phpdoc.org/">phpDoc</a> and ASP.NET should be able to work with <a href="http://blogs.msdn.com/sandcastle/">Microsoft's Sandcastle</a>.</li>
+		</ul>
+		
+		<h2>Server- and Client-side frameworks</h2>
+		<ul>
+			<li>Server-side (PHP)
+				<ul>
+					<li><a href="http://framework.zend.com/">Zend Framework</a></li>
+					<li><a href="http://cakephp.org/">CakePHP</a></li>
+					<li><a href="http://www.symfony-project.com/">symfony</a></li>
+					<li><strong><a href="http://codeigniter.com/">CodeIgniter</a></strong></li>
+				</ul>
+			</li>
+			<li>Client-side
+				<ul>
+					<li><strong><a href="http://jquery.com">jQuery</a></strong></li>
+					<li><a href="http://developer.yahoo.com/yui/">YUI</a></li>
+					<li><a href="http://prototypejs.org/">Prototype</a></li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Getting Started</h2>
+		<ul>
+			<li>CodeIgniter
+				<ul>
+					<li><a href="http://codeigniter.com/">Download CodeIgniter</a>.</li>
+					<li><a href="http://codeigniter.com/user_guide/">Dive into the Documentation</a>.</li>
+					<li>Try it out!</li>
+				</ul>
+			</li>
+			<li>jQuery
+				<ul>
+					<li><a href="http://jquery.com/">Download jQuery</a>.</li>
+					<li><a href="http://docs.jquery.com/Main_Page">Dive into the Documentation</a>.</li>
+					<li>Try it out!</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Trying out CodeIgniter</h2>
+		<p>We'll take CodeIgniter for a spin, with an aim to:</p>
+		<ul>
+			<li>Get the server up and running.</li>
+			<li>Figure out URL routes, controllers and views.</li>
+			<li>Integrate jQuery.</li>
+			<li>Wire up an Ajax script to allow inline editing of text in a test view.</li>
+			<li>Look at how database connectivity and models work.</li>
+		</ul>
+		
+	</body>
+</html>

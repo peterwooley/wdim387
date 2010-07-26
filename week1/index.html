@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>WDIM387 Advanced Scripting, Week 1</title>
+		<script type="text/javascript" src="scripts/highlight/highlight.js"></script>
+		<script type="text/javascript">
+			hljs.initHighlightingOnLoad('php','javascript');
+		</script>
+		<link type="text/css" rel="stylesheet" href="styles/highlight.css" />
+		<link type="text/css" rel="stylesheet" href="styles/common.css" media="all" />
+		<link type="text/css" rel="stylesheet" href="styles/projection.css" media="projection" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>WDIM387 Advanced Scripting <span>with Peter Wooley</span></h1>
+			<p class="tagline">The <q>Scripting</q> Class, Week 1</p>
+		</div>
+		
+		<h2>Me!</h2>
+		<ul>
+			<li>Work at McAfee doing UI Development for <a href="http://www.mcafee.com/us/enterprise/products/security_management_console/epolicy_orchestrator.html">ePO/MFS</a>.</li>
+			<li>Released <a href="http://userscripts.org/scripts/show/24430">several</a> <a href="http://userscripts.org/scripts/show/46615">Favicon</a> <a href="http://userscripts.org/scripts/show/57280">alerts</a> that are now in the <a href="https://addons.mozilla.org/en-US/firefox/addon/6076">Better Gmail</a> & <a href="https://addons.mozilla.org/en-US/firefox/addon/6424?src=reco">Better GReader</a> Firefox Addons. In addition, <a href="https://addons.mozilla.org/en-US/firefox/addon/10442">Lala Control</a>.</li>
+			<li>Still play <a href="http://wow.peterwooley.com/">WoW</a>.</li>
+		</ul>
+		
+		<h2>You</h2>
+		<ol>
+			<li>What's your name?</li>
+			<li>What's one of the geekiest things you have ever done?</li>
+			<li>In the context of Web Applications, what are you most interested in learning?</li>
+		</ol>
+
+		<h2>Getting Started</h2>
+		<ul>
+			<li><a href="SU10_WDIM387_A.pdf">The Syllabus</a></li>
+		</ul>
+		
+		<h2>What is the web missing?</h2>
+		<ol>
+			<li>What can you not do online?</li>
+			<li>What should work better on the web?</li>
+		</ol>
+		
+		<h2>What do you need?</h2>
+		<ol>
+			<li>What skills would you need to acquire to make <strong>everything</strong> for a web app?</li>
+			<li>What tools does the school not provide to help you?</li>
+		</ol>
+		
+		<h2>What I require of you</h2>
+		<ol>
+			<li>Be on <a href="http://twitter.com">Twitter</a>. Follow me at @<a href="http://twitter.com/peterwooley">peterwooley</a>.</li>
+			<li>Have your own <a href="http://lifehacker.com/5545568/five-best-personal-web-hosts">web hosting</a>.</li>
+			<li>Know your chosen server-side language.</li>
+		</ol>
+		
+		<h2>Using source control management software</h2>
+		<ul>
+			<li><a href="http://en.wikipedia.org/wiki/Revision_control">Revision control</a> (or version control, source control, source control management, source code management) is the management of changes in files.</li>
+			<li>A Typical revision control system will allow you to compare, restore, and merge various files.</li>
+			<li>Revision control systems typically store changes in files as <a href="http://en.wikipedia.org/wiki/Delta_compression">deltas</a>&mdash;the difference between two file states.</li>
+			<li>The simplest form of revision control is storing backups of your files as you make changes (e.g., <code>index_01.html</code>, <code>index_02.html</code>, <code>index_03.html</code>, etc.)</li>
+		</ul>
+		
+		<h2>Types of revision control</h2>
+		<ul>
+			<li>Client-Server
+				<ul>
+					<li>All changes to code exist in a server-side repository.</li>
+					<li>Changes are <code>commit</code>'d to the server through clients.</li>
+					<li>Client repositories must be <code>update</code>'d from the server.</li>
+					<li>If the same file is modified by two users, upon <code>commit</code>, the file is <code>merged</code>.</li>
+				</ul>
+			</li>
+			<li>Distributed
+				<ul>
+					<li>All changes to code exist in a client-side repository.</li>
+					<li>Changes are <code>commit</code>'d to the local repository, and <code>push</code>'d to other repositories.</li>
+					<li>Client repositories can <code>pull</code> changes from other repositories.</li>
+					<li>If the same file is modified by two users, upon <code>push</code> or <code>pull</code>, the file is <code>merged</code>.</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Revision control software</h2>
+		<ul>		
+			<li>Some superb revision control systems are:
+				<ul>
+					<li>Client-Server
+						<ul>
+							<li><a href="http://bazaar-vcs.org/">Bazaar</a></li>
+							<li><a href="http://subversion.tigris.org/"><em>Subversion</em></a></li>
+							<li><a href="http://www.adobe.com/products/creativesuite/versioncue/">Version Cue</a></li>
+						</ul>
+					</li>
+					<li>Distributed
+						<ul>
+							<li><a href="http://darcs.net/">darcs</a></li>
+							<li><a href="http://git-scm.com/"><em>git</em></a></li>
+							<li><a href="http://www.selenic.com/mercurial/">Mercurial</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Use revision control</h2>
+		<ul>
+			<li>This term, you're required to use source control for your final project.</li>
+			<li>The system or software is your decision.</li>
+			<li>Feel free to make use of software and services that make revision control simple.</li>
+			<li>I'll be making class notes available in a git repository.</li>
+		</ul>
+		
+		<h2>How to use revision control</h2>
+		<ul>
+			<li>Let's try it out!</li>
+			<li>The revision software that took the world by storm recently is git. We'll use that.</li>
+			<li>Several places host revision repositories&mdash;some do it for free.</li>
+			<li>Although the project must be open source to be free, <a href="http://github.com">GitHub</a> is a great solution.</li>
+			<li>We'll create an SSH key, sign up for an account, create a repository, then figure out how to actually use it.</li>
+		</ul>
+		
+		<h2>Setting Up</h2>
+		<ul>
+			<li>Load <a href="assets/Git-1.7.0.2-preview20100309.exe"><code>assets/Git-1.7.0.2-preview20100309.exe</code></a>.</li>
+			<li>Open Start &raquo; Git &raquo; Git Bash</li>
+			<li>Follow along with setting up the GitHub account...</li>
+		</ul>
+		
+		<h2>Git Client Applications</h2>
+		<ul>
+			<li>Windows: <a href="http://code.google.com/p/msysgit/">msysgit</a></li>
+			<li>OS X: <a href="http://code.google.com/p/git-osx-installer/">Git for OS X</a></li>
+			<li>Linux: <a href="http://git-scm.com/">git</a></li>
+		</ul>
+		
+		<h2>A basic, OOP approach to web applications</h2>
+		<ul>
+			<li>Now that you know how to create compelling client-side experiences, as well as server-side ones, the last thing left is to connect them.</li>
+			<li>As you can imagine, Ajax is the key. For this, we'll use <a href="http://jquery.com/">jQuery</a>.</li>
+			<li>Getting Ajax functionality in an application is as easy as adding an <em>Ambassador</em> file.</li>
+			<li>Think of your this file as the single point where you client-side JavaScript talks to your Server-side scripts.</li>
+			<li>This can be implemented as a Class for easy management.</li>
+		</ul>
+		
+		<h2>Ambassador Approach</h2>
+		<ul>
+			<li>An example in PHP may look like this:
+				<pre><code class="php">&lt?php
+
+class AjaxAmbassador {
+	public function __construct() {}
+	
+	public function send($method, $data = null) {
+		switch($method) {
+			case 'get-latest': $this->getLatest(); break;
+			case 'save-changes': $this->saveChanges($data); break;
+		}
+	}
+	
+	private function getLatest() {
+		echo DB::query("CALL GetLatestNewsPosts()")->fetchAll()->getAsJSON();
+	}
+	
+	private function saveChanges($data) {
+		$post = new Post($data['id']);
+		$post->updateFields($data);
+		$post->commit();
+	}
+}
+
+$aa = new AjaxAmbassador();
+$aa->send($_GET['m'], $_POST);</code></pre>
+			</li>
+			<li>Where the Ajax URL <code>/ajax.php?m=get-latest</code> is used.</li>
+		</ul>
+		
+		<h2>Server- and Client-side frameworks</h2>
+		<ul>
+			<li>Server-side (PHP)
+				<ul>
+					<li><em><a href="http://framework.zend.com/">Zend Framework</a></em></li>
+					<li><a href="http://cakephp.org/">CakePHP</a></li>
+					<li><a href="http://www.symfony-project.com/">symfony</a></li>
+					<li><em><a href="http://codeigniter.com/">CodeIgniter</a></em></li>
+				</ul>
+			</li>
+			<li>Client-side
+				<ul>
+					<li><em><a href="http://jquery.com">jQuery</a> + You</em></li>
+					<li><a href="http://developer.yahoo.com/yui/">YUI</a></li>
+					<li><a href="http://prototypejs.org/">Prototype</a></li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Writing &amp; generating API documentation</h2>
+		<ul>
+			<li>Carefully documenting your code, in a standard way, is extremely helpful.</li>
+			<li><a href="http://en.wikipedia.org/wiki/JSDoc">JSDoc</a> gives that standard and <a href="http://code.google.com/p/jsdoc-toolkit/">jsdoc-toolkit</a> is the tool that'll make your documentation process <em>simple</em>.</li>
+			<li>A bit of JSDoc documentation to admire:
+				<pre><code class="javascript">/**
+ * Creates a SearchApp that adds live searching to a supplied table of data.
+ * @class Searches table and manages visibilty of applicable search results.
+ * @version 1.1
+ *
+ * @property {Object} self Internal reference to &lt;code&gt;this&lt;/code&gt;.
+ * @property {Object} root jQuery DOM Reference to root node for instance
+ *
+ * @param {Object} $element The root jQuery DOM reference, containing the search field and table of data.
+ */
+function SearchApp($element) {
+	var self = this;
+	this.root = $element;
+	
+	/**
+	 * Searches through all table data for the supplied search term, hiding all rows that do not match.
+	 * @returns {null} Does not return a value.
+	 */
+	this.search = function(event) {
+		$('tbody tr', self.root.children('.list')).show().not(":contains(" + $(this).val() + ")").hide();
+	}
+	
+	$('input', this.root).keyup(this.search);
+	$('[type=submit]', this.root).hide();
+}</code></pre>
+			</li>
+		</ul>
+		
+		<h2>Generating the documentation</h2>
+		<ul>
+			<li>Unzip the <a href="assets/jsdoc_toolkit-2.1.0.zip">assets/jsdoc_toolkit-2.1.0.zip</a> file.</li>
+			<li>Move the <code>jsdoc-toolkit</code> folder into <code>examples/doc/</code>.</li>
+			<li>Copy the <a href="assets/open.bat">assets/open.bat</a> into the <code>jsdoc-toolkit</code> folder.</li>
+			<li>Launch <code>open.bat</code>.</li>
+			<li>Generate the <code>SearchApp.js</code> documentation
+				<pre><code>java -jar jsrun.jar app\run.js -a -t=templates\jsdoc ..\SearchApp.js</code></pre>
+			</li>
+			<li>Navigate to the <a href="examples/doc/jsdoc-toolkit/out/jsdoc/index.html">out/jsdoc/index.html</a> file in your browser.</li>
+		</ul>
+		
+		<h2>Using documentation</h2>
+		<ul>
+			<li>I want to see your documentation, especially, for your server-side code.</li>
+			<li>Generating documentation for PHP can be done with <a href="http://www.phpdoc.org/">phpDoc</a> and ASP.NET should be able to work with <a href="http://blogs.msdn.com/sandcastle/">Microsoft's Sandcastle</a>.</li>
+		</ul>
+		
+		<h2>Hosting options &amp; requirements</h2>
+		<ul>
+			<li>You'll need to acquire hosting to post your projects.</li>
+			<li>Hosting options you should look for
+				<ul>
+					<li><dfn title="Secure Shell">SSH</dfn> Access</li>
+					<li>Lots of (or Unlimited) Subdomains</li>
+					<li>Single-click installation of <a href="http://wordpress.org/">your choice of CMS</a></li>
+					<li>Plenty of MySQL databases</li>
+					<li>Shared <dfn title="Secure Sockets Layer">SSL</dfn></li>
+				</ul>
+			</li>
+			<li>Hosting suggestions
+				<ul>
+					<li><a href="http://1and1.com/">1and1</a></li>
+					<li><a href="http://mediatemple.net/">MediaTemple</a></li>
+					<li><a href="http://www.fatcow.com/">FatCow</a></li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>First</h2>
+		<ul>
+			<li><a href="homework.html">First Project</a></li>
+		</ul>
+		
+	</body>
+</html>

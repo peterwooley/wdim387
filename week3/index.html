@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>WDIM387 Advanced Scripting, Week 2</title>
+		<script type="text/javascript" src="scripts/highlight/highlight.js"></script>
+		<script type="text/javascript">
+			hljs.initHighlightingOnLoad('php','javascript');
+		</script>
+		<link type="text/css" rel="stylesheet" href="styles/highlight.css" />
+		<link type="text/css" rel="stylesheet" href="styles/common.css" media="all" />
+		<link type="text/css" rel="stylesheet" href="styles/projection.css" media="projection" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>WDIM387 Advanced Scripting <span>with Peter Wooley</span></h1>
+			<p class="tagline">The <q>Scripting</q> Class, Week 2</p>
+		</div>
+		
+		<h2>Design Patterns</h2>
+		<ul>
+			<li><q>Design Patterns describe simple and elegant solutions to specific problems in object oriented software design.</q> &mdash;Simone Carletti in <a href="http://www.slideshare.net/weppos/design-patterns-in-php-phpcon-italia">Design Patterns in PHP</a>.</li>
+			<li>Design Patterns solve common problems in ways that are reusable.</li>
+			<li>Design Patterns can rarely be used the same way twice.</li>
+			<li>Design Patterns can <a href="http://random.noflashlight.com/">track your online pizza order</a>.</li>
+			<li>There are <a href="http://en.wikipedia.org/wiki/Design_pattern_(computer_science)">so many to choose from</a>, we're going for one.</li>
+		</ul>
+		
+		<h2><a href="http://en.wikipedia.org/wiki/Model-View-Controller">Model View Controller</a> pattern</h2>
+		<ul>
+			<li><dfn title="Model View Controller">MVC</dfn> separates your <a href="http://en.wikipedia.org/wiki/Business_logic">business logic</a> from your <a href="http://en.wikipedia.org/wiki/Presentation_logic">presentation logic</a>.</li>
+			<li>Nearly every programmer &amp; programming language subscribes to a few basic principles about MVC:
+				<blockquote><p>In MVC, the model represents the information (the data) of the application; the view corresponds to elements of the user interface such as text, checkbox items, and so forth; and the controller manages the communication of data and the business rules used to manipulate the data to and from the model. <a href="http://en.wikipedia.org/wiki/Model-View-Controller">#</a></p></blockquote>
+			</li>
+			<li>From there, people start disagreeing about the semantics.</li>
+			<li>MVC is a little easier to understand on the server-side, so here we go (care of <a href="http://www.bhartisoftland.com/technologies-skill-sets/gifs/mvc-php.png">Bharti Softland</a>):
+				<p><img src="assets/mvc-php.png" alt="MVC on the Server-side: The model handles the data and database, the controller handles requests to and from the model, view, and web server, and the view generates shiny HTML." /></p>
+			</li>
+		</ul>
+		
+		<h2>Using the Model in CodeIgniter</h2>
+		<ul>
+			<li>We'll look at how we can store, retrieve and update data in MySQL by using Models in CodeIgniter.</li>
+			<li>The <a href="http://codeigniter.com/user_guide/general/models.html">User Guide on Models</a> follows what we'll be doing.</li>
+		</ul>
+		
+		<h2>Ajax with jQuery</h2>
+		<ul>
+			<li>Ajax support is extensive, but vastly simplified and secure compared to our intial implementation.</li>
+			<li>You can explicitly call either GET or POST Ajax requests.</li>
+			<li>Callbacks functions are called on any of the Ajax 'readystate's.</li>
+			<li>Let's look at the <a href="examples/ajax/ajax.html">Ajax example script</a>.</li>
+		</ul>
+		
+		<h2>JSONP—JSON with Padding!</h2>
+		<ul>
+			<li>In order to get around Ajax domain limitations, <a href="http://bob.pythonmac.org/archives/2005/12/05/remote-json-jsonp/">somebody came up with a great idea</a>.</li>
+			<li>JSONP (basically) generates a new <code>&lt;script /&gt;</code> tag, and loads a remote <code>src</code> url.</li>
+			<li>Based on the URL, the server then generates JSON and wraps it in a JavaScript function call.</li>
+			<li>When the script is loaded, it executes the function and we have access to the data.</li>
+			<li>Let's look at how we can <a href="examples/api/apis.html">interact with Twitter</a> in this way.</li>
+		</ul>
+		
+		<h2>Ajax File Uploads</h2>
+		<ul>
+			<li>As the <a href="http://www.w3.org/TR/XMLHttpRequest/">XMLHttpRequest</a> does not allow file uploading, another technique is needed.</li>
+			<li>Use of a generated &lt;iframe/&gt; will do the trick, and the <a href="http://www.malsup.com/jquery/form/">jQuery Form Plugin</a> does just that.</li>
+			<li>Using a simple form and minimal setup, we can <a href="examples/fileUpload">make jQuery do the upload work for us</a>.</li>
+		</ul>
+		
+	</body>
+</html>

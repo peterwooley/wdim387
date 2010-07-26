@@ -1,0 +1,51 @@
+h1, h2, h3 {
+	page-break-before: always;
+	counter-increment: page;
+	position:relative;
+}
+h1 {
+	page-break-before: auto;
+}
+h2, h3 {
+	padding-top:20px;
+}
+
+.header {
+	margin-top:250px;
+}
+
+body {
+	font-size:200%;
+}
+
+ul li {
+	margin-top:.5em;
+}
+
+pre {
+	font-size:65%;
+}
+
+.key {
+	text-decoration:blink;
+}
+
+.page_number {
+	position:absolute;
+	right:2.7em;
+	top:0;
+	text-align:right;
+}
+.page_count {
+	position:fixed;
+	right:0;
+	top:0;
+	width:2.5em;
+}
+.page_number span {
+	content: counter(page) " ";
+}
+
+.page_count:after {
+	content: counter(page) " ";
+}
