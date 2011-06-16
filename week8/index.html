@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>WDIM387 Advanced Scripting, Week 8</title>
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0;">
+		
+		<script type="text/javascript" src="scripts/highlight/highlight.pack.js"></script>
+		<script type="text/javascript">
+			hljs.initHighlightingOnLoad();
+		</script>
+		<link type="text/css" rel="stylesheet" href="styles/highlight.css" />
+		<link type="text/css" rel="stylesheet" href="styles/common.css" media="all" />
+		<link type="text/css" rel="stylesheet" href="styles/projection.css" media="projection" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>WDIM387 Advanced Scripting <span>with Peter Wooley</span></h1>
+			<p class="tagline">The <q>Scripting</q> Class, Week 8</p>
+		</div>
+		
+		<h2>This Week in Advanced Scripting</h2>
+		<ul>
+			<li>Designing for Mobile</li>
+		</ul>
+		
+		<h2>One Web?</h2>
+			<p>From Barbara Ballard's <a href="http://www.littlespringsdesign.com/blog/2006/Sep/whats-wrong-with-the-mobile-web-part-1/">What's Wrong With the Mobile Web?</a>:</p>
+			<blockquote>
+				<p>There are two main camps in the mobile web:  </p>
+				<p></p><ol><li><b>One Web</b>. The Internet is the Internet, and sites should run well on all devices. Optimization should be based on CSS and device detection, but should not change site function or content beyond the necessary.</li>
+				<p></p><li><b>Mobile Web</b>. The mobile is a different platform with different capabilities and different user needs.  Sites should be optimized for mobile in many (but not all) cases. </li></ol>		
+			</blockquote>
+		
+		<h2>Mobile Web Examples</h2>			
+		<ul>
+			<li>Single HTML document: <a href="http://2010.dconstruct.org/">dConstruct 2010</a> (<a href="http://www.smashingmagazine.com/2010/07/19/how-to-use-CSS3-media-queries-to-create-a-mobile-version-of-your-website/">Smashing Magazine Article</a>)</li>
+			<li>Separate web app: <a href="http://m.google.com/">m.google.com</a></li>
+			<li>Native App wrapper: <a href="http://www.phonegap.com/">PhoneGap</a></li>
+			<li>Native App &amp; Web App: <a href="http://itunes.apple.com/app/twitter/id333903271?mt=8">Twitter for iPhone</a>, <a href="http://blog.twitter.com/2010/04/twitter-for-android-robots-like-to.html">Twitter for Android</a>, <a href="http://mobile.twitter.com/">Twitter Web App</a></li>
+		</ul>
+		
+		<h2><a href="http://www.w3.org/TR/css3-mediaqueries/">CSS Media Queries</a> Examples</h2>
+		<ol>
+			<li>Change stylesheets depending on device orientation (iPad only, <a href="http://www.cloudfour.com/ipad-orientation-css/">from CloudFour</a>):
+				<pre><code class="html">&lt;link rel="stylesheet" media="all and (orientation:portrait)" href="portrait.css"&gt;
+&lt;link rel="stylesheet" media="all and (orientation:landscape)" href="landscape.css"&gt;</code></pre>
+			</li>
+			<li>Uses CSS rules on screens with a certian max-device-width (<a href="http://www.smashingmagazine.com/2010/07/19/how-to-use-CSS3-media-queries-to-create-a-mobile-version-of-your-website/">from Smashing Magazine</a>):
+				<pre><code class="css">@media only screen and (max-device-width: 480px) {
+    #main { url(graphics/bg-small.png); }
+}</code></pre>
+			</li>
+		</ol>
+		
+		<h2>Media Queries Aren't the Answer?</h2>
+		<ul>
+			<li>Media Queries may not be the answer, <a href="http://www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/">Jason Grigsby</a> points out"
+				<blockquote><p>Unfortunately, <strong>CSS media query is fool’s gold for mobile devices</strong>. It hides tough problems and gives developers a false promise of a simple solution for designing to multiple screens.</p></blockquote>
+			</li>
+			<li>As Quirksmode shows us, <a href="http://www.quirksmode.org/m/css.html#t021">support is not yet universal</a>.</li>
+		</ul>
+		
+		<h2>Mobile Web Frameworks</h2>
+		<ul>
+			<li><a href="http://jqtouch.com/">jQTouch</a> (iOS-centric, Open Source)</li>
+			<li><a href="http://www.sencha.com/products/touch/">Sencha Touch</a> (Open Source + Commercial License)</li>
+			<li><a href="http://jquerymobile.com">jQuery Mobile</a></li>
+		</ul>
+		
+		<h2>Flash?</h2>
+		
+		<h2>In-Class</h2>
+		<ul>
+			<li>Revisit the Hard-to-solve problems we had in Week 5.</li>
+			<li>If you don't have an implementation for the problem, implement it.</li>
+			<li>If you already solved that problem, pick a new tough problem and implement it in class.</li>
+		</ul>
+		
+	</body>
+</html>

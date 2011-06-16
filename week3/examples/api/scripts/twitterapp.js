@@ -4,9 +4,7 @@ function TwitterApp(element) {
 	this.construct = function() {
 		this.root = element;
 		this.api_url = 'http://twitter.com';
-		
-		this.public_timeline('lindseyk');
-		this.public_timeline('_dom');
+
 		this.public_timeline('WDIM_aipd');
 		this.public_timeline('peterwooley');
 	}

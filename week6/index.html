@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>WDIM387 Advanced Scripting, Week 6</title>
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0;">
+		
+		<script type="text/javascript" src="scripts/highlight/highlight.js"></script>
+		<script type="text/javascript">
+			hljs.initHighlightingOnLoad('php','javascript');
+		</script>
+		<link type="text/css" rel="stylesheet" href="styles/highlight.css" />
+		<link type="text/css" rel="stylesheet" href="styles/common.css" media="all" />
+		<link type="text/css" rel="stylesheet" href="styles/projection.css" media="projection" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>WDIM387 Advanced Scripting <span>with Peter Wooley</span></h1>
+			<p class="tagline">The <q>Scripting</q> Class, Week 6</p>
+		</div>
+		
+		<h2>This Week in Advanced Scripting</h2>
+		<ul>
+			<li>Multiple Models in MVC</li>
+			<li>Firebugging</li>
+			<li>Issue tracking</li>
+			<li>Coding Standards</li>
+		</ul>
+		
+		<h2>Multiple Models in MVC</h2>
+		<ul>
+			<li>"The model of an application is the domain-specific software simulation or implementation of the application's central structure." From: <a href="http://www.ics.uci.edu/~redmiles/ics227-SQ04/papers/KrasnerPope88.pdf">A Cookbook for Using the Model-View-Controller User Interface Paradigm in Smalltalk-80</a></li>
+		</ul>
+		
+		<h2>Firebugging</h2>
+		<ul>
+			<li>Firebug's mystery is only exceeded by its power.</li>
+		</ul>
+		
+		<h2>Firebug Command Line (Console)</h2>
+		<ul>
+			<li>It's a <dfn title="Read-eval-print loop">REPL</dfn>!
+				<ul>
+					<li>Create functions</li>
+					<li>Set variables</li>
+					<li>Access page window scope</li>
+				</ul>
+			</li>
+			<li><code>$0</code> &amp; <code>$1</code></li>
+			<li><code>dir()</code>, <code>keys()</code>, &amp; <code>values()</code></li>
+			<li><code>profile()</code> &amp; <code>profileEnd()</code></li>
+			<li><a href="http://getfirebug.com/wiki/index.php/Command_Line_API">More...</a></li>
+		</ul>
+		
+		<h2>Firebug HTML Tab</h2>
+		<ul>
+			<li>Element Inspector
+				<ul>
+					<li>Right-Click &raquo; Inspect Element</li>
+					<li>F12 + Inspect Button</li>
+					<li>Inspect Toolbar Button</li>
+					<li>Command Line: <code>inspect(<var>element</var>, 'html')</code></li>
+				</ul>
+			</li>
+			<li>Right-Click on Element
+				<ul>
+					<li>Scroll Into View</li>
+					<li>Edit HTML...</li>
+					<li>Break on Attribute Change <em>(Hot!)</em></li>
+					<li>Break on Chlid Addition or Removal</li>
+					<li>Break on Element Removal</li>
+				</ul>
+			</li>
+			<li>Style Sub-Tab
+				<ul>
+					<li>Double-click White space for New Attribute</li>
+					<li>Live Editing</li>
+					<li>All styles listed Specific &raquo; General</li>
+				</ul>
+			</li>
+			<li>Layout Sub-Tab: Exact box model dimensions <em>(Priceless!)</em></li>
+		</ul>
+		
+		<h2>Firebug Script Tab</h2>
+		<ul>
+			<li>View &amp; Debug all scripts</li>
+			<li>Select script file through dropdown next to 'all'&mdash;including <code>eval()</code>'d scripts.</li>
+			<li>Set debugging breakpoints by clicking left of line numbers.</li>
+			<li>Watch Sub-Tab
+				<ul>
+					<li>Add any JavaScript expression that will be continually evaluated as you debug.</li>
+					<li>Right-click to refresh the values any time.</li>
+				</ul>
+			</li>
+			<li>Stack Sub-Tab: While Debugging, the list of functions being executed.</li>
+			<li>Breakpoints Sub-Tab: If you lose track of your breakpoints, you can active/deactivate/delete all of them here.</li>
+		</ul>
+		
+		<h2>Firebug Net Tab</h2>
+		<ul>
+			<li>Lists all (GET, POST, etc.) requests (During &amp; Post Load) along with the time it took for them to complete and their size.</li>
+			<li>Each completed request can be expanded to show Parameters, Headers (Request &amp; Response), and other data.</li>
+		</ul>
+		
+		<h2>Firebug Search Bar</h2>
+		<ul>
+			<li>The top-right bar is a contextual search bar</li>
+			<li>Useful in CSS and Script Tabs, which allow searching over multiple files.</li>
+			<li>Searching the HTML, DOM, and Net Tabs are a little less useful.</li>
+		</ul>
+		
+		<h2>Firebug Tips &amp; Tricks</h2>
+		<ul>
+			<li>Add <code>console.log()</code> without editing your script file.
+				<ul>
+					<li>Open the Script tab and find the line where you'd like to add the <code>console.log()</code>.</li>
+					<li>Right-click to the left of the line and enter this code: <code>console.log(<var>expession</var>) && 0</code></li>
+					<li>Run the code and watch the expression be logged in the Console Tab.</li>
+					<li>This utilizies conditional breakpoints, where a breakpoint will only <em>break</em> if the expression is <var>true</var>. With the <code>&& 0</code>, the expression will always return <var>false</var>, regardless of what <code>console.log</code> returns.</li>
+				</ul>
+			</li>
+			<li>Create a Collapsible group in the Console Tab.
+				<ul>
+					<li>Where you want to use <code>console.log()</code>, <code>console.error()</code>, etc., just prepend <code>console.group()</code> and append <code>console.groupEnd()</code>.</li>
+					<li>This is useful when you want to group a large number of messages without putting them into a single <code>console.log</code> message.</li>
+					<li>You can also use <code>console.groupCollapsed()</code>, which automatically collapses the group.</li>
+				</ul>
+			</li>
+			<li>Create timers without using <code>new Date()</code>.
+				<ul>
+					<li>Where you want to start a timer, use <code>console.time(<var>nameOfTimer</var>)</code>. You can start as many timers are you'd like using unique names.</li>
+					<li>To end a timer and write the elapsed time to the console, just call <code>console.timeEnd(<var>nameOfTimer</var>)</code>.</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Issue Tracking (<a href="http://en.wikipedia.org/wiki/Comparison_of_issue-tracking_systems">Comprehensive Comparison</a>)</h2>
+		<ul>
+			<li><a href="http://github.com/blog/411-github-issue-tracker">GitHub Issues</a>(Included for every repo, <a href="http://github.com/peterwooley/blazejs/issues">including blaze.js</a>.)
+				<ul>
+					<li>Hosted on GitHub.</li>
+					<li>Search, sort, and filter, including labels (e.g. tags)</li>
+					<li>Fast, JavaScript interface, designed for getting through issues quickly.</li>
+					<li>Issue voting, so users can set the priority.</li>
+					<li>Close issues from commit messages</li>
+				</ul>
+			</li>
+			<li><a href="http://www.bugzilla.org/">Bugzilla</a> (<a href="https://bugzilla.mozilla.org/">Mozilla</a> &amp; <a href="http://itos.gsfc.nasa.gov/~bugzilla/">NASA</a> use it!)
+				<ul>
+					<li>Self-Hosted, runs on Perl, Open Source.</li>
+					<li>Advanced query tool that can remember your searches, but is quite complicated.</li>
+					<li>Extremely scalable, both through server performance and number of hosted projects.</li>
+					<li>Comprehensive permissions system</li>
+				</ul>
+			</li>
+			<li><a href="http://trac.edgewall.org/">Trac</a>
+				<ul>
+					<li>Self-Hosted, runs on Python, Open Source.</li>
+					<li>Extremely customizable, Wiki-like interface with support for advanced searches.</li>
+					<li>Includes Issue Tracking as well Project Management using Issues as Features.</li>
+					<li>Manage existing issues from commit messages (</li>
+					<li>In my experience, it was a bit complicated to setup, but the integrated Project Management was worth it!</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Coding Standards</h2>
+		<ul>
+			<li>Every language typically has a set of coding standards (or multiple sets) that encourage unambiguous code.</li>
+			<li>In the realm of JavaScript, Douglas Crockford keeps <a href="http://javascript.crockford.com/code.html">a list of good conventions</a>, the key points being:
+				<ul>
+					<li>Declare functions &amp; variables before they are used.</li>
+					<li>The <code>with</code> statement should not be used. </li>
+					<li><code>eval</code> is evil and should not be used.</li>
+				</ul>
+			</li>
+			<li><a href="http://codeigniter.com/user_guide/general/styleguide.html">CodeIgniter has its own Style Guide</a>, which contain a few great ideas like:
+				<ul>
+					<li>Always use the full-form PHP tags (<code>&lt;?php</code>).</li>
+					<li>For files that contain only PHP code, the closing tag (<code>?&gt;</code>) is never permitted.</li>
+					<li>TRUE, FALSE, and NULL should always be upper-case.</li>
+					<li>If a class name is comprised of more than one word, the first letter of each new word must be prepended by an underscore and not CamelCased. (e.g. <code>Super_class</code>)</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>Bonus: <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a></h2>
+		<ul>
+			<li>"HTML5 Boilerplate is the professional badass's base HTML/CSS/JS template for a fast, robust and future-proof site."</li>
+			<li>This last week, <a href="http://paulirish.com/">Paul Irish</a> and <a href="http://nimbupani.com/">Divya Manian </a> released a set of files to start you off on the right foot with HTML5.</li>
+			<li>Consequently, they bundled up nearly every best practice for HTML, CSS and JavaScript available.</li>
+			<li>Let's <a href="http://html5boilerplate.com/">Download a commented copy</a> and take a look!</li>
+		</ul>
+		
+	</body>
+</html>

@@ -15,9 +15,15 @@
 				// Ajax. Booya.
 				//$.get('data/name.txt', success);
 				
+				$.ajax({
+					url: "data/name.txt",
+					success: success,
+					type: 'get'
+				});
+				
 				
 				// Ajax with plenty of control
-				/*$.ajax({
+				$.ajax({
 					async: true, // default
 					beforeSend: null, // default
 					cache: true, // default
@@ -33,7 +39,7 @@
 					timeout: 3000, // milliseconds, default of null
 					url: 'data/slogan.txt',
 					type: 'get'
-				});*/
+				});
 				
 			  });
 		</script>		
@@ -43,3 +49,18 @@
 		<h1><a href="/">Nothing Going On Here</a></h1>
 	</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
