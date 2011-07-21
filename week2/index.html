@@ -77,7 +77,17 @@
 
 		<div class="slide">
 			<h1>JSON with Padding</h1>
+			<ul>
+				<li>In order to get around Ajax domain limitations, <a href="http://bob.pythonmac.org/archives/2005/12/05/remote-json-jsonp/">somebody came up with a great idea</a>.</li>
+				<li>JSONP (basically) generates a new <code>&lt;script&gt;</code> tag, and loads a remote <code>src</code> url.</li>
 
+				<li>Based on the URL, the server then generates JSON and wraps it in a JavaScript function call.</li>
+				<li>When the script is loaded, it executes the function and we have access to the data.</li>
+				<li>jQuery automagically supports JSONP when using <code>$.getJSON()</code>, like so:
+					<pre class="brush: js">$.getJSON("http://service.that.supports.jsonp.com/data.json?callback=?").then(&hellip;)</pre>
+				</li>
+			</ul>
+				
 		</div>
 
 		<div class="slide">
@@ -138,6 +148,7 @@ Database.runSql(con, "SELECT COUNT(*) FROM users");</pre>
 				<li>5MB of Storage across nearly all browsers that support it.</li>
 				<li>An easy way to detect if the browser supports it.</li>
 				<li>An API that doesn't require a GMT Date String!</li>
+				<li>The <a href="http://www.jstorage.info/">jStorage Plugin</a> that lets it work in IE6 &amp; 7.</li>
 				<li>Let's play with it in code.</li>
 			</ul>
 		</div>
@@ -159,7 +170,7 @@ wait()();</pre>
 			<h1>Debugging Everywhere</h1>
 			<p>Essential tools for debugging server- and client-side code:</p>
 			<ul>
-				<li>Browser-based JavaScript Debugger (Firebug, F12 Tools, Web Inspector, etc.)</li>
+				<li>Browser-based JavaScript Debugger (Firebug, F12 Tools, Web Inspector)</li>
 				<li>Browser-based Network Traffic Monitor</li>
 				<li><a href="http://www.firephp.org/">FirePHP</a></li>
 			</ul>
