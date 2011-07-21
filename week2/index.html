@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <title>WDIM387 Advanced Scripting &mdash; Week 2</title>
+        <!-- Slippy core file and dependencies -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" src="slippy/src/jquery.history.js"></script>
+        <script type="text/javascript" src="slippy/src/slippy.js"></script>
+        <!-- Slippy structural styles -->
+        <link type="text/css" rel="stylesheet" href="slippy/src/slippy.css"/>
+        <!-- Syntax highlighting core file  -->
+        <script type="text/javascript" src="slippy/src/highlighter/shCore.js"></script>
+        <!-- Syntax highlighting brushes, remove those you don't need -->
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushBash.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushCss.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushDiff.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushJScript.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPhp.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPlain.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushXml.js"></script>
+        <!-- Syntax highlighting styles-->
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shThemeRDark.css"/>
+
+
+		<!-- Common Styles -->
+		<link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light:regular&v1" rel="stylesheet" type="text/css" >
+		<link type="text/css" rel="stylesheet" href="styles/slippy-wdim.css" />
+
+        <!-- Slippy init code -->
+        <script type="text/javascript">
+            $(function() {
+                $(".slide").slippy();
+				SyntaxHighlighter.defaults.gutter = false;
+                SyntaxHighlighter.all();
+            });
+        </script>
+
+        <!-- Custom style for this deck -->
+        <style type="text/css">
+            .slide.nofooter {
+                border: 0;
+                background: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slide title" data-layout="title">
+            <h1>WDIM387 Advanced Scripting</h1>
+			<h2>Week 2</h2>
+        </div>
+
+		<div class="slide">
+			<h1>Object Oriented JavaScript, in Practice</h1>
+			<p>I've crafted a demo using CodeIgniter for the back-end and JavaScriptMVC for the front-end. It's the <a href="https://github.com/peterwooley/bitcoin-mining-viewer">bitcoin-mining-viewer</a>.
+			<p>We'll walk through it right after we talk about...</p>
+		</div>
+
+		<div class="slide title">
+			<h1><a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model-View-Controller</a></h1>
+		</div>
+
+		<div class="slide">
+			<h1>Bitcoin Mining Viewer</h1>
+			<p>The key files to pay attention to are:</p>
+			<ul>
+				<li>public/.htaccess</li>
+				<li>public/application/controllers/api.php</li>
+				<li>public/application/models/profile.php</li>
+				<li>public/mining/mining.js</li>
+				<li>public/mining/models/profile.js</li>
+				<li>public/mining/controllers/summary_controller.js</li>
+				<li>public/mining/views/summary.tmpl</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1>JSON with Padding</h1>
+
+		</div>
+
+		<div class="slide">
+			<h1>MVC Hackathon</h1>
+			<p>You have 1 hour to create a Flickr Tag Explorer.</p>
+			<p>Use a JavaScript-based MVC library (<a href="http://javascriptmvc.com/">JavaScriptMVC</a>, <a href="http://documentcloud.github.com/backbone/">Backbone.js</a>, etc.).</p>
+			<p>There should be a textbox to enter a tag to search for, a search button, and a place where the images with that tag are displayed.</p>
+			<p>You can use a server-side service or JSONP.</p>
+		</div>
+
+		<div class="slide">
+			<h1>More <a href="http://en.wikipedia.org/wiki/Design_pattern_%28computer_science%29">Design Patterns</a></h1>
+			<p>Design Pattersn are general, reusable solutions to common programming problems.</p>
+			<p>Some are easy to implement in JavaScript, others are difficult.</p>
+		</div>
+
+		<div class="slide">
+			<h1>Builder Pattern</h1>
+			<p>The Builder pattern hides the complexity of object creation and is often written in a <a href="http://en.wikipedia.org/wiki/Declarative_programming">Declarative</a> way.</p>
+			<pre class="brush: js">$("#header")
+	.text("Building")
+	.addClass("header")
+	.data("secret", "message")
+	.hide()
+	.show("slow");</pre>
+		</div>
+
+		<div class="slide">
+			<h1>Singleton</h1>
+			<p>A Singleton class ensures that only one instance of a class or object exists and is available globally.</p>
+			<pre class="brush: js">var Database = {
+	getConnection: function() {
+		return openDatabase("mydb", "1.0", "database", 1024 * 1024);
+	},
+	runSql: function(con, sql) {
+		con.transaction(function(tx) {
+			tx.executeSql(sql);
+		});
+	}
+}
+
+var con = Database.getConnection();
+Database.runSql(con, "SELECT COUNT(*) FROM users");</pre>
+		</div>
+
+		<div class="slide">
+			<h1>Design Pattern Researchathon</h1>
+			<p>You've got 20 minutes to learn about and implement a Design Pattern &mdash; <em>that we haven't discussed</em> &mdash; in JavaScript.</p>
+			<p>The Creational and Structural Patterns are easier, but <a href="http://en.wikipedia.org/wiki/Design_pattern_%28computer_science%29">go ahead and pick any one you'd like</a>!</p>
+		</div>
+
+		<div class="slide">
+			<h1>localStorage</h1>
+			<p>Before I dumb it down, <a href="http://diveintohtml5.org/storage.html">Dive Into HTML5's chapter on localStorage is amazing</a>.</li>
+			<p>Really, <code>window.localStorage</code> is the grown-up version of <code>document.cookie</code>.
+			<p>You get:</p>
+			<ul>
+				<li>5MB of Storage across nearly all browsers that support it.</li>
+				<li>An easy way to detect if the browser supports it.</li>
+				<li>An API that doesn't require a GMT Date String!</li>
+				<li>Let's play with it in code.</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1>Closures</h1>
+			<p>Closures are functions that retain references to variables declared in the outer scope of where they were declared.</p>
+			<p>As no textual explanation has ever made sense to me, here's an example:</p>
+			<pre class="brush: js">function wait() {
+	var name = "Johnny Alabaster"; // Name is declared and set here.
+	return function() { alert("Heyo, " + name + "!") };
+}
+
+// And when we call the resulting function, it remembers the name.
+wait()();</pre>
+		</div>
+
+		<div class="slide">
+			<h1>Debugging Everywhere</h1>
+			<p>Essential tools for debugging server- and client-side code:</p>
+			<ul>
+				<li>Browser-based JavaScript Debugger (Firebug, F12 Tools, Web Inspector, etc.)</li>
+				<li>Browser-based Network Traffic Monitor</li>
+				<li><a href="http://www.firephp.org/">FirePHP</a></li>
+			</ul>
+		</div>
+
+        <div class="layout" data-name="title">
+            <content></content>
+            <div class="footer">
+                <span class="left">Peter Wooley</span>
+                <span class="right">WDIM387A</span>
+                <span class="left">Twitter <a href="http://twitter.com/peterwooley">@peterwooley</a></span>
+                <span class="right"><a href="https://github.com/peterwooley/wdim387">Notes on GitHub</a></span>
+                <hr class="defloat" />
+            </div>
+        </div>
+
+        <div class="layout nofooter" data-name="default">
+            <content></content>
+        </div>
+    
+		<!-- Common Scripts -->
+		<script src="scripts/jquery.noisy.min.js"></script>
+		<script src="scripts/index.js"></script>
+	</body>
+</html>
