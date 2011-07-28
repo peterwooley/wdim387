@@ -222,34 +222,141 @@ $(window).bind("popstate", function(event) {
 		</div>
 
 		<div class="slide">
-			<h1><a href="http://cutetypo.com">CuteTypo</a> &mdash; A Chat App</h1>
-			<p><a href="http://cutetypo.com">CuteTypo</a> is a Web-based Chat Service.</p>
-			<p>It provides everything for a Chat Application, save for the front-end.</p>
-			<p>It will be the topic of both our in-class Hackathon and our Homework.</p>
+			<h1><a href="http://cutetypo.com">CuteTypo</a> &mdash; A Chat Web Service</h1>
+			<p><a href="http://cutetypo.com">CuteTypo</a> <del>is</del> <ins>will be</ins> a Web-based Chat Service.</p>
+			<p>It'll provide everything for a Chat Application, save for the front-end.</p>
+			<p>It'll be the topic of both our in-class Hackathon and our Homework for next week.</p>
 			<p><a href="http://github.com/peterwooley/cutetypo">The source is available on GitHub.</a></p>
 		</div>
 
 		<div class="slide">
-			<h1>Starting Together</h1>
-			<p>We'll start writing a front-end for CuteTypo together.</p>
-			<p>Starting with:</p>
-			<ul>
-				<li>Connecting to the service with our unique token.</li>
-				<li>Setting the name of our application.</li>
-				<li>Getting the name of our application.</li>
-			</ul>
-			<p>To begin, let's <a href="http://cutetypo.com/">consult the documentation!</a></p>
+			<h1>Canvas</h1>
+			<p>The canvas tag is a scriptable drawing API (Like Flash, but <del>slower</del> <ins>better</ins>).</p>
+			<pre class="brush: html">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Canvas!&lt;/title&gt;
+	&lt;script&gt;
+	window.onload = function() {
+		var stage = document.getElementById("stage");
+
+		// Get the Canvas context
+		// Will throw an error when unsupported.
+		var ctx = stage.getContext('2d');
+
+		ctx.fillStyle = "rgb(200,0,0)";
+		ctx.fillRect(10, 10, 55, 50);
+		ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+		ctx.fillRect(30, 30, 55, 50);
+	};
+	&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;canvas id="stage" width="300" height="200"&gt;&lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+		</div>
+	
+		<div class="slide">
+			<h1>Drawing Lines</h1>
+			<p>Canvas offers methods to draw contiguous and non-contiguous lines and curves.</li>
+			<pre class="brush: js">// Draws a Triangle
+ctx.beginPath(); // Creates a new path
+ctx.moveTo(75,50); // Moves the path without drawing a line.
+ctx.lineTo(100,75); // Draws a line from 75,50 to 100,75
+ctx.lineTo(100,25);
+ctx.lineTo(75,50); 
+ctx.stroke(); // Makes the line visible
+
+// Draws a Pac-like Man
+ctx.beginPath(); // Starts a brand new path
+ctx.moveTo(200, 50); // Move to center of circle
+ctx.arc(200,50,30,Math.PI*.15,Math.PI*1.85); // Radians
+ctx.lineTo(200,50); // Finish in center
+ctx.stroke(); // Add line
+ctx.fillStyle = "yellow";
+ctx.fill(); // Fill shape with color 
+</pre>
 		</div>
 
 		<div class="slide">
-			<h1>Chatathon</h1>
-			<p>You'll have 45 minutes to turn our simple scripts into a working chat application front-end.</li>
-			<p>Here's what you need to do:</p>
-			<ul>
-				<li>Utilize the get and send APIs to see messages from others and send your own.</li>
-				<li>Craft a view widget that shows the messages to the user.</li>
-				<li>Craft a submit widget that allows the user to type in a message and send it.</li>
-			</ul>
+			<h1>Happyhackathon</h1>
+			<p>You have 15 minutes to use the canvas tag to draw a smiley face.</p>
+			<p>You can use any methods as long as it looks like a face!</p>
+		</div>
+
+		<div class="slide">
+			<h1>Using Images</h1>
+			<p>Canvas provides a <code>drawImage()</code> method that allows us to place images within our canvas.</p>
+			<pre class="brush: js">var img = new Image();
+img.onload = function() {
+	ctx.drawImage(img, 0, 0);
+	ctx.strokeStyle = "#fff";
+	ctx.lineWidth = 2;
+	ctx.strokeRect(10,10,280,180);
+}
+img.src = "http://placekitten.com/300/200";</pre>
+			<p>Read more about using images in canvas at <a href="https://developer.mozilla.org/en/Canvas_tutorial%3aUsing_images">Mozilla's Canvas Tutorial</a>.</p>
+		</div>
+
+		<div class="slide">
+			<h1>Rotation, Translation &amp; Scaling</h1>
+			<p><code>rotate()</code>, <code>translate()</code>, <code>scale()</code>, <code>save()</code>, and <code>restore()</code> require an example.</p>
+			<pre class="brush: js">var ctx = stage.getContext('2d'),	
+	img = new Image(),
+	var rad = 0; // The current rotation in Radians
+
+img.onload = function() {
+	setInterval(function() {
+		rad += rad < Math.PI*2 ? .1 : -rad + .1;
+		ctx.clearRect(0,0,300,200);
+		ctx.save();
+		ctx.translate(150, 100); // Set 0,0 to Center
+		ctx.rotate(rad);
+		// ctx.scale(rad, rad); // This will hurt.
+		ctx.drawImage(img, -150, -100);
+		ctx.strokeStyle = "#fff";
+		ctx.lineWidth = 2;
+		ctx.strokeRect(-140,-90,280,180);
+		ctx.restore();
+
+	}, 50); // Re-render the canvas every 50ms`
+}
+img.src = "http://placekitten.com/300/200";</pre>
+			<p>Futher details are in the <a href="https://developer.mozilla.org/en/Canvas_tutorial/Transformations">Mozilla Tutorial</a>.</p>
+		</div>
+
+		<div class="slide">
+		    <h1>Interacting with the User</h1>
+			<p>Since the canvas tag is essentially an image, interacting with the mouse requires a little bit more work than you would assume.</p>
+		    <pre class="brush: js">window.onload = function() {
+	var stage = document.getElementById("stage");
+	// Get the Canvas context
+	var ctx = stage.getContext('2d');
+
+	stage.onclick = function(event) {
+		// Determine the mouse position, relative to the canvas.
+		var x = event.clientX - stage.offsetLeft,
+			y = event.clientY - stage.offsetTop;
+
+		ctx.clearRect(0,0,300,200);
+		// Draw a rectangle centered on the mouse position
+		ctx.fillRect(x-5, y-5, 10, 10);
+	};
+};</pre>
+		</div>
+
+		<div class="slide">
+		    <h1>Click &amp; Spinathon</h1>
+		    <p>You've got 15 minutes to combine the Rotation example with the Interaction example.</p>
+			<p>Allow the user to click on any part of the canvas and move the spinning image so it is centered on the mouse location.</p>
+			<p>Bonus Participation Point: When the user clicks, slide (read: animate) the image (as it's spinning) to the new location.</p>
+		</div>
+
+		<div class="slide">
+		    <h1>An Example Planet</h1>
+		    <p>I have a fairly complex example of <a href="examples/planet/canvas.html">an animating canvas drawing</a>.</p>
+			<p>We'll walk through it and see what makes sense.</p>
 		</div>
 
 		<div class="slide title">
