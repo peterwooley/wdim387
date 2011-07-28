@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <title>WDIM387 Advanced Scripting &mdash; Week 3</title>
+        <!-- Slippy core file and dependencies -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" src="slippy/src/jquery.history.js"></script>
+        <script type="text/javascript" src="slippy/src/slippy.js"></script>
+        <!-- Slippy structural styles -->
+        <link type="text/css" rel="stylesheet" href="slippy/src/slippy.css"/>
+        <!-- Syntax highlighting core file  -->
+        <script type="text/javascript" src="slippy/src/highlighter/shCore.js"></script>
+        <!-- Syntax highlighting brushes, remove those you don't need -->
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushBash.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushCss.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushDiff.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushJScript.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPhp.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPlain.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushXml.js"></script>
+        <!-- Syntax highlighting styles-->
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shThemeRDark.css"/>
+
+
+		<!-- Common Styles -->
+		<link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light:regular&v1" rel="stylesheet" type="text/css" >
+		<link type="text/css" rel="stylesheet" href="styles/slippy-wdim.css" />
+
+        <!-- Slippy init code -->
+        <script type="text/javascript">
+            $(function() {
+                $(".slide").slippy();
+				SyntaxHighlighter.defaults.gutter = false;
+                SyntaxHighlighter.all();
+            });
+        </script>
+
+        <!-- Custom style for this deck -->
+        <style type="text/css">
+            .slide.nofooter {
+                border: 0;
+                background: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slide title" data-layout="title">
+            <h1>WDIM387 Advanced Scripting</h1>
+			<h2>Week 3</h2>
+        </div>
+
+		<div class="slide title">
+			<h1>How'd the Homework go?</h1>
+			<h2>Email the Live URL and GitHub Repo URL to <a href="mailto:pwooley@aii.edu">pwooley@aii.edu</a>.</h2> 
+		</div>
+
+		<div class="slide">
+		    <h1>Weekly Happenings</h1>
+			<ul>
+				<li>Firebug allows you to <a href="http://www.sitepoint.com/firebug-css-active-hover-states/">examine :active &amp; :hover styles</a>.</li>
+				<li>Nathan Whitehead has <a href="http://nathansjslessons.appspot.com/">some great JavaScript tutorials</a> (<abbr title="Hat Tip">HT</abbr> <a href="http://twitter.com/phyre5">@phyre5</a>).</li>
+				<li>ThinkGeek will be selling <a href="http://twitpic.com/5twcii">a Plush Talking Portal Turret</a> this winter.</li>
+				<li>I spent (well, McAfee spent) $500 dollars on an IDE (<a href="http://www.jetbrains.com/idea/">Intellij IDEA</a>).</a>
+		</div>
+
+		<div class="slide">
+			<h1>Strategy Design Pattern</h1>
+			<p>The strategy pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable.</p>
+			<pre class="brush: js">// This code demonstrates the pattern, but doesn't quite work.
+// JavaScript date and number formatting isn't quite this nice.
+var formatStrategies = {
+	enUS: { 
+		date: function(d) { return d.toString("dd/MM/yyyy"); },
+		number: function(n) { return lib.addDelimiters(n, ","); }
+	},
+	enGB: {
+		date: function(d) { return d.toString("MM/dd/yyyy"); }, 
+		number: function(n) { return lib.addDelimiters(n, "."); }
+	}
+};
+
+// When the user logs in, set this value.
+var format = formatStrategies.enGB;
+
+format.date(new Date); // Returns 06/30/2011
+format.number("12000345.28"); // Returns 12.000.345,28
+</pre>
+		</div>
+
+		<div class="slide">
+			<h1>Design Pattern Researchathon</h1>
+			<p>You've got 30 minutes to learn about and implement a Design Pattern &mdash; <em>that we haven't discussed</em> &mdash; in JavaScript.</p>
+			<p>The Creational and Structural Patterns are easier, but <a href="http://en.wikipedia.org/wiki/Design_pattern_%28computer_science%29">go ahead and pick any one you'd like</a>!</p>
+		</div>
+
+		<div class="slide">
+			<h1>Debugging Everywhere</h1>
+			<p>Essential tools for debugging server- and client-side code:</p>
+			<ul>
+				<li>Browser-based JavaScript Debugger (Firebug, F12 Tools, Web Inspector)</li>
+				<li>Browser-based Network Traffic Monitor</li>
+				<li><a href="http://www.firephp.org/">FirePHP</a> (and <a href="http://www.firephp.org/Wiki/Libraries/Ruby">FirePHRuby</a>)</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1>Why Ajax?</h1>
+			<ol>
+				<li>Above all, to Benefit the User Experience.</li>
+				<li>To update the UI without refreshing the page.</li>
+				<li>To interact with Web Services without using the server.</li>
+				<li>To reduce strain on the server. (Just send JSON, no HTML)</li>
+				<li>To be hip/cool/stylin'/bitchin'/etc.</li>
+			</ol>
+		</div>
+
+		<div class="slide">
+			<h1>7 Ajax Best Practices</h1>
+			<ol>
+				<li>If possible, make Ajax an optional enhancement to your <abbr title="User Experience">UX</a>.</li>
+				<li>Send and expect data (JSON, YAML, XML) from the server.</li>
+				<li>Make the data as tiny as possible.</li>
+				<li>Unless it's impractical, have JavaScript widgets construct their own DOM Structures.</li>
+				<li>Handle errors elegantly.</li>
+				<li>Don't break the Back button.</li>
+				<li>Learn about HTTP (and TCP/IP).</li>
+			</ol>
+		</div>
+
+		<div class="slide">
+			<h1>Make Ajax Optional</h1>
+			<p>GitHub makes use of the new HTML5 <code>history.pushState()</code> method to update (and animate!) the page as users drill down into repositories.</p>
+			<pre class="brush: js">// Setup buttons to slide instead of click.
+$("#slider a.js-slide-to, .breadcrumb a").live("click", function (event) {
+	event.preventDefault();
+	window.history.pushState({}, '', a.target.href);
+})
+
+// When the state changes, slide the new page into view.
+$(window).bind("popstate", function(event) {
+	AwesomeGitHubSlider.slideTo(location.pathname);
+});</pre>
+		</div>
+
+		<div class="slide">
+			<h1>Send &amp; Expect Data from the Server</h1>
+			<p>Using Ajax can reduce the number of bits that flow between the server and the browser.</p>
+			<p>Send data (JSON) to the server and have the server return data, rather than rendered markup.</p>
+			<p>JavaScript is fast, and getting faster, so writing your DOM construction code on the client-side can save your server cycles.</p>
+			<p>Plus, you can manipulate data easily in JavaScript. Doing post-processing on an HTML block in JavaScript is a little trickier.</p>
+		</div>
+
+		<div class="slide">
+			<h1>Make Data as Tiny as Possible</h1>
+			<ul>
+				<li>When sending and recieving data, make sure it's as small as possible.</li>
+				<li>Favor JSON over XML.</li>
+				<li>If it makes sense to just return a string, then just return a string.</li>
+				<li><a href="http://developer.yahoo.com/performance/rules.html#gzip">Use gzip compression</a> on your entire site to reduce the size further.</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1>Widgets Should Construct their Elements</h1>
+			<p>Do this:</p>
+			<pre class="brush: js">var TableWidget = {
+	render: function(rows) {
+		var $el = $("<table><thead><tr><th>Name</th></tr></thead><tbody></tbody></table>");
+		// Add data to table here
+		$el.appendTo("body");
+	}
+}</pre>
+			<p>Not this:</p>
+			<pre class="brush: js">&lt;table id="tablewidget"&gt;
+	&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+	&lt;tbody&gt;&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;script&gt;
+	var TableWidget = {
+		render: function(rows) {
+			var $el = $("#tableWidget");
+			// Add data to table here
+		}
+	}
+&lt;/script&gt;</pre>
+		</div>
+
+		<div class="slide">
+			<h1>Handle Errors Elegantly</h1>
+			<p>Make sure to utilize error handlers when your server or Web Service is unavailable or times out.</p>
+			<pre class="brush: js">$.getJSON("http://server/api/data.json")
+	.done(function(data) { alert("Success!"); })
+	.fail(function(error) { alert("FAIL! Refresh the page?"); });
+</pre>
+		</div>
+
+		<div class="slide">
+			<h1>Don't Break the Back Button</h1>
+			<p><a href="http://net.tutsplus.com/tutorials/javascript-ajax/24-best-practices-for-ajax-implementations/">Nettuts+ says it well</a>:
+			<blockquote>
+				<h2>Respect the Back Button</h2>
+				<p>The back button is another action that has become part of a normal web user’s habits. Make sure your application adheres to this respected paradigm to avoid angering users. Trust me, they will, if suddenly their back button doesn’t work as intended.</p>
+				<p>Here is a list of article which should help you with the matter.</p>
+				<ul>
+					<li><a href=http://www.contentwithstyle.co.uk/content/fixing-the-back-button-and-enabling-bookmarking-for-ajax-apps>Content with Style</a></li>
+					<li><a href="http://www.mikage.to/jquery/jquery_history.html">jQuery History Plugin</a></li>
+					<li><a href="http://code.google.com/p/reallysimplehistory/">Really Simple History</a></li>
+				</ul>
+			</blockquote>
+		</div>
+
+		<div class="slide">
+			<h1>Learn about HTTP &amp; TCP/IP</h1>
+			<p>Read these books:</p>
+			<ul>
+				<li><a href="http://amzn.com/1565925092">HTTP: The Definitive Guide</a></li>
+				<li>
+				    <a href="http://amzn.com/0201633469">TCP/IP Illustrated</a>
+				</li>
+		</div>
+
+		<div class="slide">
+			<h1><a href="http://cutetypo.com">CuteTypo</a> &mdash; A Chat App</h1>
+			<p><a href="http://cutetypo.com">CuteTypo</a> is a Web-based Chat Service.</p>
+			<p>It provides everything for a Chat Application, save for the front-end.</p>
+			<p>It will be the topic of both our in-class Hackathon and our Homework.</p>
+			<p><a href="http://github.com/peterwooley/cutetypo">The source is available on GitHub.</a></p>
+		</div>
+
+		<div class="slide">
+			<h1>Starting Together</h1>
+			<p>We'll start writing a front-end for CuteTypo together.</p>
+			<p>Starting with:</p>
+			<ul>
+				<li>Connecting to the service with our unique token.</li>
+				<li>Setting the name of our application.</li>
+				<li>Getting the name of our application.</li>
+			</ul>
+			<p>To begin, let's <a href="http://cutetypo.com/">consult the documentation!</a></p>
+		</div>
+
+		<div class="slide">
+			<h1>Chatathon</h1>
+			<p>You'll have 45 minutes to turn our simple scripts into a working chat application front-end.</li>
+			<p>Here's what you need to do:</p>
+			<ul>
+				<li>Utilize the get and send APIs to see messages from others and send your own.</li>
+				<li>Craft a view widget that shows the messages to the user.</li>
+				<li>Craft a submit widget that allows the user to type in a message and send it.</li>
+			</ul>
+		</div>
+
+		<div class="slide title">
+			<h1>Done &amp; Done</h1>
+			<h2><a href="homework.html">Homework!</a></h2>
+		</div>
+
+        <div class="layout" data-name="title">
+            <content></content>
+            <div class="footer">
+                <span class="left">Peter Wooley</span>
+                <span class="right">WDIM387A</span>
+                <span class="left">Twitter <a href="http://twitter.com/peterwooley">@peterwooley</a></span>
+                <span class="right"><a href="https://github.com/peterwooley/wdim387">Notes on GitHub</a></span>
+                <hr class="defloat" />
+            </div>
+        </div>
+
+        <div class="layout nofooter" data-name="default">
+            <content></content>
+        </div>
+    
+		<!-- Common Scripts -->
+		<script src="scripts/jquery.noisy.min.js"></script>
+		<script src="scripts/index.js"></script>
+	</body>
+</html>
