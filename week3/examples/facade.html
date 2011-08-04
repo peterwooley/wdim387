@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Facade Design Pattern in JavaScript</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		var EventHelper = {
+			stop: function (e) {
+				// others
+				if (typeof e.preventDefault === "function") {
+					e. preventDefault();
+				}
+				if (typeof e.stopPropagation === "function") {
+					e. stopPropagation();
+				}
+				// IE
+				if (typeof e.returnValue === "boolean") {
+					e. returnValue = false;
+				}
+				if (typeof e.cancelBubble === "boolean") {
+					e. cancelBubble = true;
+				}
+			}
+		}
+		
+		(function($) {
+			$.fn.stopEvent = function(e) {
+				// others
+				if (typeof e.preventDefault === "function") {
+					e. preventDefault();
+				}
+				if (typeof e.stopPropagation === "function") {
+					e. stopPropagation();
+				}
+				// IE
+				if (typeof e.returnValue === "boolean") {
+					e. returnValue = false;
+				}
+				if (typeof e.cancelBubble === "boolean") {
+					e. cancelBubble = true;
+				}
+				
+				return this;
+			});
+		})(jQuery);
+
+		$(function() {
+			// Instead of writing this
+			$('a').click(function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+			});
+
+			// Facade lets you wrap complicated logic away.
+			$('a').click(function(e) {
+				EventHelper.stop(e);
+			});
+		});
+	</script>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="http://google.com">Google!</a>
+        </li>
+        <li>
+            <a href="http://google.com">Google!</a>
+        </li>
+        <li>
+            <a href="http://google.com">Google!</a>
+        </li>
+        <li>
+            <a href="http://google.com">Google!</a>
+        </li>
+        <li>
+            <a href="http://google.com">Google!</a>
+        </li>
+    </ul>
+</body>
+</html>
