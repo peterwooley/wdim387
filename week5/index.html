@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <title>WDIM387 Advanced Scripting &mdash; Week 5</title>
+        <!-- Slippy core file and dependencies -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" src="slippy/src/jquery.history.js"></script>
+        <script type="text/javascript" src="slippy/src/slippy.js"></script>
+        <!-- Slippy structural styles -->
+        <link type="text/css" rel="stylesheet" href="slippy/src/slippy.css"/>
+        <!-- Syntax highlighting core file  -->
+        <script type="text/javascript" src="slippy/src/highlighter/shCore.js"></script>
+        <!-- Syntax highlighting brushes, remove those you don't need -->
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushBash.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushCss.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushDiff.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushJScript.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPhp.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPlain.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushXml.js"></script>
+        <!-- Syntax highlighting styles-->
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shThemeRDark.css"/>
+
+
+		<!-- Common Styles -->
+		<link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light:regular&v1" rel="stylesheet" type="text/css" >
+		<link type="text/css" rel="stylesheet" href="styles/slippy-wdim.css" />
+
+        <!-- Slippy init code -->
+        <script type="text/javascript">
+            $(function() {
+                $(".slide").slippy();
+				SyntaxHighlighter.defaults.gutter = false;
+                SyntaxHighlighter.all();
+            });
+        </script>
+
+        <!-- Custom style for this deck -->
+        <style type="text/css">
+            .slide.nofooter {
+                border: 0;
+                background: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slide title" data-layout="title">
+            <h1>WDIM387 Advanced Scripting</h1>
+			<h2>Week 5</h1>
+        </div>
+
+		<div class="slide title">
+		    <h1>Homework</h1>
+		    <h2>Let's all load up our apps and get chattin'!</h2>
+		</div>
+
+		<div class="slide">
+			<h1>CodeIgniter's <a href="http://codeigniter.com/user_guide/database/active_record.html">ActiveRecord</a></h1>
+			<p>We haven't covered SQL or Server-side persistance at all.</p>
+			<p>Let's talk a bit about it by <a href="https://github.com/peterwooley/cutetypo/blob/master/application/models/message_model.php">examining the <code>message_model</code> class from CuteTypo</a>.</p>
+		</div>
+
+		<div class="slide">
+			<h1>Writing &amp; Generating API Documentation</h1>
+			<ul>
+				<li>Carefully documenting your code, in a standard way, is extremely helpful.</li>
+				<li><a href="http://en.wikipedia.org/wiki/JSDoc">JSDoc</a> gives that standard and <a href="http://code.google.com/p/jsdoc-toolkit/">jsdoc-toolkit</a> is the tool that'll make your documentation process <em>simple</em>.</li>
+				<li>A bit of JSDoc documentation to admire:
+					<pre class="brush: js">/**
+ * A function that demos the purposes of JSDoc.
+ * @version 1.1
+ *
+ * @param {String} str A string to use.
+ * @param {Number} num The number to crunch.
+ * @param {Function} func The callback function.
+ * @returns {Boolean} True if correct, false if not.
+ */
+function example(str, num, func) {&hellip;}</pre>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="slide">
+			<h1>Generating Documentation</h1>
+			<ul>
+				<li>Unzip the <a href="assets/jsdoc_toolkit-2.4.0.zip">assets/jsdoc_toolkit-2.4.0.zip</a> file.</li>
+				<li>Move the <code>jsdoc-toolkit</code> folder into <code>examples/doc/</code>.</li>
+				<li>Open a Terminal (iTerm, Git Bash, etc.) and <code>cd</code> into <code>examples/doc/jsdoc-toolkit/</code>.</li>
+				<li>Generate the <code>SearchApp.js</code> documentation
+					<pre class="brush: bash">java -jar jsrun.jar app/run.js -a -t=templates/jsdoc ../SearchApp.js</pre>
+				</li>
+				<li>Navigate to the <a href="examples/doc/jsdoc-toolkit/out/jsdoc/index.html">out/jsdoc/index.html</a> file in your browser.</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1 title="Are you tired of these names yet?">Documentathon</h1>
+			<h2>You've got 20 minutes to document your server-side code.</h2>
+
+			<ol>
+				<li>Find a Documentation Generator for your server-side language.</li>
+				<li>Add PHPDoc (or RubyDoc) comments to your code (pre-existing or new).</li>
+				<li>Use the generator to parse your code and render some pretty HTML documentation.</li>
+			</ol>
+		</div>
+
+		<div class="slide">
+			<h1>Functional Testing</h1>
+			<ul>
+				<li>Functional tests evaluate your app to make sure it works the way the user expects.</li>
+				<li>On the topic, <a href="http://www.ibm.com/developerworks/library/j-test.html">Jeff Canna explains</a>,
+					<blockquote>
+						<p>Functional tests are even more important than unit tests because they verify that your system is ready for release. The functional tests define your working system in a useful manner. A maintained suite of functional tests:</p>
+						<ul>
+							<li>Captures user requirements in a useful way</li>
+							<li>Gives the team (users and developers) confidence that the system meets those requirements</li>
+						</ul>
+					</blockquote>
+				</li>
+				<li>Within a functional test, you validate a <a href="http://en.wikipedia.org/wiki/User_story">User Story</a>&mdash;a scenario of use from the user's perspective.</li>
+			</ul>
+		</div>
+		
+		<div class="slide">
+			<h1>Automated Functional Testing</h1>
+			<ul>
+				<li>There are many tools for automating functional testing, but my favourite is <a href="http://seleniumhq.org/projects/ide/">Selenium IDE</a>.</li>
+				<li>Selenium IDE is a Firefox addon that allows you to create tests by recording your steps (like a Macro).</li>
+				<li>Each set of actions becomes a Test Case, which you can put into a Test Suite.</li>
+				<li>You can <a href="http://seleniumhq.org/download/">download the latest stable version from Selenium's site</a>.</li>
+			</ul>
+		</div>
+		
+		<div class="slide">
+			<h1>Selenium IDE</h1>
+			<img src="assets/seleniumIDE.png" style="float:right;width:300px;" alt="Selenium runs in Firefox as a separate window." />
+			<ul>
+				<li>After Selenium IDE has been installed, you can fire up Firefox, select Tools &raquo; Selenium IDE, and start testing.</li>
+				<li>The Selenium IDE Windows should look like this:
+					<p></p>
+				</li>
+				<li>You can create new Test Cases through File &raquo; New Test Case &amp; Test Suites through File &raquo; New Test Suite.</li>
+				<li>You <strong>must</strong> save Test Cases and Test Suites to their own file for everything to function as expected.</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1 title="These names are getting hard to come up with.">Seleniuathon</h1>
+			<p>You've got 15 minutes to write a functional test using Selenium IDE.</p>
+			<p>The test should load up your Chat app, change the username to something that contains "Selenium" and write out the message "All your chats are belong to me."</p>
+		</div>
+
+		<div class="slide">
+			<h1>Unit Testing with Jasmine</h1>
+			<ul>
+				<li>Unit Testing involves evaluating the smallest pieces of a larger system to ensure they work correctly.</li>
+				<li>Typically, the 'units' that are tested in JavaScript are methods of objects.</li>
+				<li>Frameworks exist that allow you to automate tests, like <a href="http://pivotal.github.com/jasmine/">Jasmine</a>.</li>
+				<li>Technically, Jasmine is a Behavior-driven development framework (BDD), but it works very similarly to other unit testing frameworks.</li>
+				<li>With Jasmine, we can <a href="examples/jasmine">write our unit tests</a>!</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+		    <h1><a href="http://developer.yahoo.com/yslow/">YSlow</a></h1>
+		    <p>YSlow analyzes web pages and suggests ways to improve their performance based on a set of <a href="http://developer.yahoo.com/performance/rules.html">rules for high performance web pages</a>.</p>
+			<p>You'll need to investigate the performance best practices for your homework this week.</p>
+		</div>
+
+		<div class="slide title">
+		    <h1>All Done!</h1>
+		    <h2><a href="homework.html">Homework!</a></h2>
+		</div>
+
+        <div class="layout" data-name="title">
+            <content></content>
+            <div class="footer">
+                <span class="left">Peter Wooley</span>
+                <span class="right">WDIM387A</span>
+                <span class="left">Twitter <a href="http://twitter.com/peterwooley">@peterwooley</a></span>
+                <span class="right"><a href="https://github.com/peterwooley/wdim387">Notes on GitHub</a></span>
+                <hr class="defloat" />
+            </div>
+        </div>
+
+        <div class="layout nofooter" data-name="default">
+            <content></content>
+        </div>
+    
+		<!-- Common Scripts -->
+		<script src="scripts/jquery.noisy.min.js"></script>
+		<script src="scripts/index.js"></script>
+	</body>
+</html>
