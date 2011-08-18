@@ -58,11 +58,186 @@
 
 		<div class="slide title">
 			<h1>Building a Library</h1>
+			<p>I stole all of this from <a href="http://ejohn.org/blog/building-a-javascript-library/">John Resig's Google TechTalk</a>.</p>
+			<p>When writing a library, you must:</p>
+			<ul>
+				<li>Create a Solid API</li>
+				<li>Implement clean, readable code</li>
+				<li>Lean on Extensibility</li>
+				<li>Document everything</li>
+				<li>Test constantly</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+		    <h2>Solid API</h2>
+		    <p>Make a CRUD table for all of your API actions</p>
+
+			<h3>jQuery</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Feature</th>
+						<th>Create</th>
+						<th>Read</th>
+						<th>Update</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>CSS Classes Mangement</td>
+						<td><code>addClass()</code></td>
+						<td><code>$(".class")</code></td>
+						<td><code>toggleClass()</code></td>
+						<td><code>removeClass()</code></td>
+					</tr>
+					<tr>
+						<td>DOM Management</td>
+						<td><code>$("&lt;markup&gt;");</code></td>
+						<td><code>$("markup");</code></td>
+						<td><pre>$("markup")
+  .addClass('updated');</pre></td>
+						<td><pre>$("markup")
+  .remove();</pre></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3>CuteTypo</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Feature</th>
+						<th>Create</th>
+						<th>Read</th>
+						<th>Update</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>App Name</td>
+						<td>Nonexistent</td>
+						<td><code>/name/get</code></td>
+						<td><code>/name/set</code></td>
+						<td>Nonexistent</td>
+					</tr>
+					<tr>
+						<td>Messages</td>
+						<td><code>/message/send</code></td>
+						<td><code>/message/get</code></td>
+						<td>Nonexistent</td>
+						<td>Nonexistent</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="slide">
+		    <h1>Constantly Manage your API</h1>
+			<ul>
+				<li>Fear Adding Methods</li>
+				<li>Remove Code Fearlessly</li>
+				<li>Above All, Be Consistent.</li>
+			</ul>
+		</div>
+		
+		<div class="slide">
+			<h1>Evolution of a JavaScript Coder</h1>
+			<ol>
+				<li>"Everything is an object!"</li>
+				<li>"You can write Object-Oriented code!"</li>
+				<li>"Huh, so that's how Object Prototypes work!"</li>
+				<li>"Thank God for closures!"</li>
+			</ol>
+		</div>
+
+		<div class="slide">
+		    <h1>Clean, Readable Code</h1>
+			<p>Closures are essential.</p>
+			<p>Understand this snippet:</p>
+				<pre class="brush: js">(function() {
+	// Code
+}());</pre>
+			<p>Encapsulate the code in the above to contain all of your code, hide it, and prevent it from leaking.</p>
+			<p>Namespace your code and ask:</p>
+			<ul>
+				<li>Can my code co-exist with other random code on the site?</li>
+				<li>Can my code co-exist with other copies of my own library?</li>
+				<li>Can my code be embedded inside another namespace?</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+		    <h1>Quick Constructor Tip</h1>
+		    <pre class="brush: js">function jQuery(str, con) {
+  if(window==this) {
+	return new jQuery(str, con);
+  }
+}
+
+// Now, you can use this
+jQuery("#foo");
+
+// Instead of having to do this
+new jQuery("#foo");</pre>
+		</div>
+
+		<div class="slide">
+		    <h1>Extensibility</h1>
+			<ul>
+				<li>Your code should be easily extensible (this is pretty easy with JavaScript)</li>
+				<li>Write less code and encourage others to extend your library.</li>
+				<li>Code is often cleaner when the core is extensible.</li>
+				<li>People will like you.</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+		    <h1>Document, Document, Document</h1>
+		    <p>Always write documentation.</p>
+			<p>Do it in this order:</p>
+			<ol>
+				<li>User-Centric API Docs</li>
+				<li>How Tos</li>
+				<li>Plugin Authoring</li>
+				<li>Documentation on writing documentation</li>
+				<li>Super Advanced Topics</li>
+			</ol>
+		</div>
+
+		<div class="slide">
+		    <h1>Test, Test, Test</h1>
+		    <p>Most geeks won't trust a library that isn't tested.</p>
+			<p>Write your own tests using Jasmine, QUnit, JSUnit or anything that works.</p>
+			<p>Figure out how to test asynchronous code (Ajax, animations, etc.)</p>
+			<p>Have a list of supported browsers and test in all of them!</p>
 		</div>
 
 		<div class="slide title">
 		    <h1><abbr title="End Of Lecture">EOL</abbr></h1>
-		    <h2><a href="homework.html">Homework!</a></h2>
+		    <h2><a href="homework.html">Final Project!</a></h2>
+		</div>
+
+		<div class="slide">
+			<h1>Ideatathon!</h1>
+			<ol>
+				<li>Assemble your group for the final project.</li>
+				<li>Decide on an App to build.</li>
+				<li>Detail how the App will fulfill the requirements.</li>
+				<li>Present your App idea.</li>
+			</ol>
+			<p>You have 30 minutes.</li>
+		</div>
+		
+		<div class="slide">
+			<h1>Hackathon</h2>
+			<ul>
+				<li>Figure out the largest technical issue you face.</li>
+				<li>Take 45 minutes to solve the problem.</li>
+				<li>Share the problem and your solution.</li>
+			</ul>
 		</div>
 
         <div class="layout" data-name="title">
