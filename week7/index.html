@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <title>WDIM387 Advanced Scripting &mdash; Week 7</title>
+        <!-- Slippy core file and dependencies -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" src="slippy/src/jquery.history.js"></script>
+        <script type="text/javascript" src="slippy/src/slippy.js"></script>
+        <!-- Slippy structural styles -->
+        <link type="text/css" rel="stylesheet" href="slippy/src/slippy.css"/>
+        <!-- Syntax highlighting core file  -->
+        <script type="text/javascript" src="slippy/src/highlighter/shCore.js"></script>
+        <!-- Syntax highlighting brushes, remove those you don't need -->
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushBash.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushCss.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushDiff.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushJScript.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPhp.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPlain.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushXml.js"></script>
+        <!-- Syntax highlighting styles-->
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shThemeRDark.css"/>
+
+
+		<!-- Common Styles -->
+		<link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light:regular&v1" rel="stylesheet" type="text/css" >
+		<link type="text/css" rel="stylesheet" href="styles/slippy-wdim.css" />
+
+        <!-- Slippy init code -->
+        <script type="text/javascript">
+            $(function() {
+                $(".slide").slippy();
+				SyntaxHighlighter.defaults.gutter = false;
+                SyntaxHighlighter.all();
+            });
+        </script>
+
+        <!-- Custom style for this deck -->
+        <style type="text/css">
+            .slide.nofooter {
+                border: 0;
+                background: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slide title" data-layout="title">
+            <h1>WDIM387 Advanced Scripting</h1>
+			<h2>Week 7</h1>
+        </div>
+
+		<div class="slide">
+		    <h1>Weekly Happenings</h1>
+		    <ul>
+				<li><a href="http://www.apple.com/pr/library/2011/08/24Steve-Jobs-Resigns-as-CEO-of-Apple.html">Steve Jobs resigned</a>.</li>
+				<li>I got to use the <a href="http://www.w3.org/TR/css3-flexbox/">CSS3 Flex-box Layout Module</a> for some iPad work.</li>
+				<li>TouchPads for $99!</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1>Firebug Tricks: Magic console.log( )</h1>
+			<ol>
+				<li>Open the Script tab and find the line where you'd like to add the <code>console.log()</code>.</li>
+				<li>Right-click to the left of the line and enter this code: <code>console.log(<var>expession</var>) && 0</code></li>
+				<li>Run the code and watch the expression be logged in the Console Tab.</li>
+				<li>This utilizies conditional breakpoints, where a breakpoint will only <em>break</em> if the expression is <var>true</var>. With the <code>&& 0</code>, the expression will always return <var>false</var>, regardless of what <code>console.log</code> returns.</li>
+			</ol>
+		</div>
+
+		<div class="slide">
+			<h1>Firebug Trick: Collapsible Console Group</h1>
+			<ol>
+				<li>Where you want to use <code>console.log()</code>, <code>console.error()</code>, etc., just prepend <code>console.group()</code> and append <code>console.groupEnd()</code>.</li>
+				<li>This is useful when you want to group a large number of messages without putting them into a single <code>console.log</code> message.</li>
+				<li>You can also use <code>console.groupCollapsed()</code>, which automatically collapses the group.</li>
+			</ol>
+		</div>
+
+		<div class="slide">
+			<h1>Firebug Trick: Timer without a Date( )!</h1>
+			<ul>
+				<li>Where you want to start a timer, use <code>console.time(<var>nameOfTimer</var>)</code>. You can start as many timers are you'd like using unique names.</li>
+				<li>To end a timer and write the elapsed time to the console, just call <code>console.timeEnd(<var>nameOfTimer</var>)</code>.</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1><a href="http://en.wikipedia.org/wiki/Comparison_of_issue-tracking_systems">Issue Tracking</a></h1>
+			<p>Issue Tracking is a necessity for nearly any project.</p>
+			<p>Picking an issue tracker should consider:</p>
+			<ul>
+				<li>Accesibility (Notebook, .txt, hosted, etc.)</li>
+				<li>Scalability (Components, tags, search, assignees)</li>
+				<li>SCM Hooks (Commit message hooks, issue linking)</li>
+				<li>User Experience (More important than you'd think)</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1><a href="https://github.com/blog/831-issues-2-0-the-next-generation">GitHub Issues 2.0</a></h1>
+			<p>Included for every repo, <a href="http://github.com/peterwooley/wdim387/issues">including wdim387</a>.</p>
+			<ul>
+				<li>Hosted on GitHub.</li>
+				<li>Search, sort, and filter, including labels (e.g. tags)</li>
+				<li>Close issues from commit messages.</li>
+				<li>Fast, Ajax interface, designed for getting through issues quickly.</li>
+				<li>Issue voting, so users can set the priority.</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1><a href="http://www.bugzilla.org/">Bugzilla</a></h1>
+			<p><a href="https://bugzilla.mozilla.org/">Mozilla</a> &amp; <a href="http://itos.gsfc.nasa.gov/~bugzilla/">NASA</a> use it!</p>
+			<ul>
+				<li>Self-Hosted, runs on Perl, Open Source.</li>
+				<li>Advanced query tool that can remember your searches, but is quite complicated.</li>
+				<li>Extremely scalable, both through server performance and number of hosted projects.</li>
+				<li>Comprehensive permissions system.</li>
+				<li>On the Difficult-To-Use-O-Meter, it rates a 9/10.</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1><a href="http://trac.edgewall.org/">Trac</a></h1>
+			<ul>
+				<li>Self-Hosted, runs on Python, Open Source.</li>
+				<li>Extremely customizable, Wiki-like interface with support for advanced searches.</li>
+				<li>Includes Issue Tracking as well Project Management using Issues as Features.</li>
+				<li>Manage existing issues from commit messages.</li>
+				<li>In my experience, it was a bit complicated to setup, but the integrated Project Management was worth it!</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1>Coding Standards</h1>
+			<ul>
+				<li>Every language has a set of coding standards (or multiple sets) that encourage unambiguous code.</li>
+				<li>Coding style is an extremely personal topic for some developers.</li>
+				<li>Agreeing on a project's style should be done as early as possible.</li>
+				<li>Do not rewrite someone else's code just to change its style.</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1>JavaScript Coding Style</h1>
+			<p>In the realm of JavaScript, Douglas Crockford keeps <a href="http://javascript.crockford.com/code.html">a list of good conventions</a>, the key points being:</p>
+				<ul>
+					<li>Declare functions &amp; variables before they are used.</li>
+					<li>The <code>with</code> statement should not be used. </li>
+					<li><code>eval</code> is evil and should not be used.</li>
+				</ul>
+			<p>The canonical style guide is <a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google's JavaScript Style Guide</a>.</p>
+		</div>
+
+		<div class="slide">
+			<h1>PHP Coding Style</h1>
+			<p><a href="http://codeigniter.com/user_guide/general/styleguide.html">CodeIgniter has its own Style Guide</a>, which contain a few great ideas like:</p>
+			<ul>
+				<li>Always use the full-form PHP tags (<code>&lt;?php</code>).</li>
+				<li>For files that contain only PHP code, the closing tag (<code>?&gt;</code>) is never permitted.</li>
+				<li>TRUE, FALSE, and NULL should always be upper-case.</li>
+				<li>If a class name is comprised of more than one word, the first letter of each new word must be prepended by an underscore and not CamelCased. (e.g. <code>Super_class</code>)</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+			<h1>Google's <a href="http://code.google.com/closure/compiler/">Closure Compiler</a></h1>
+			<p>Compressing, Compiling, and Minifying your code will greatly reduce the size fo your code.</p>
+			<p>Side benefit: Your code is obfuscated.</p>
+			<p>Let's try out Closure Compiler. Open a terminal and <code>cd</code> to <code>week7/examples/compiler</code>:</p>
+			<pre class="brush: bash">java -jar compiler-latest/compiler.jar --js=searchapp.js --js_output_file=searchapp.min.js</pre>
+		</div>
+
+		<div class="slide title">
+		    <h1>Done &amp; Done</h1>
+		    <h2><a href="homework.html">Final Project!</a></h2>
+		</div>
+
+        <div class="layout" data-name="title">
+            <content></content>
+            <div class="footer">
+                <span class="left">Peter Wooley</span>
+                <span class="right">WDIM387A</span>
+                <span class="left">Twitter <a href="http://twitter.com/peterwooley">@peterwooley</a></span>
+                <span class="right"><a href="https://github.com/peterwooley/wdim387">Notes on GitHub</a></span>
+                <hr class="defloat" />
+            </div>
+        </div>
+
+        <div class="layout nofooter" data-name="default">
+            <content></content>
+        </div>
+    
+		<!-- Common Scripts -->
+		<script src="scripts/jquery.noisy.min.js"></script>
+		<script src="scripts/index.js"></script>
+	</body>
+</html>
