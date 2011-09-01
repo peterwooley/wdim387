@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <title>WDIM387 Advanced Scripting &mdash; Week 8</title>
+        <!-- Slippy core file and dependencies -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" src="slippy/src/jquery.history.js"></script>
+        <script type="text/javascript" src="slippy/src/slippy.js"></script>
+        <!-- Slippy structural styles -->
+        <link type="text/css" rel="stylesheet" href="slippy/src/slippy.css"/>
+        <!-- Syntax highlighting core file  -->
+        <script type="text/javascript" src="slippy/src/highlighter/shCore.js"></script>
+        <!-- Syntax highlighting brushes, remove those you don't need -->
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushBash.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushCss.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushDiff.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushJScript.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPhp.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPlain.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushXml.js"></script>
+        <!-- Syntax highlighting styles-->
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shThemeRDark.css"/>
+
+
+		<!-- Common Styles -->
+		<link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light:regular&v1" rel="stylesheet" type="text/css" >
+		<link type="text/css" rel="stylesheet" href="styles/slippy-wdim.css" />
+
+        <!-- Slippy init code -->
+        <script type="text/javascript">
+            $(function() {
+                $(".slide").slippy();
+				SyntaxHighlighter.defaults.gutter = false;
+                SyntaxHighlighter.all();
+            });
+        </script>
+
+        <!-- Custom style for this deck -->
+        <style type="text/css">
+            .slide.nofooter {
+                border: 0;
+                background: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slide title" data-layout="title">
+            <h1>WDIM387 Advanced Scripting</h1>
+			<h2>Week 8</h1>
+        </div>
+
+		<div class="slide">
+		    <h1>Tidbits</h1>
+		    <ul>
+				<li><a href="http://jsfiddle.net/">jsFiddle</a> lets you edit JavaScript in your browser.</a></li>
+				<li><a href="http://www.readwriteweb.com/hack/2011/08/on-second-thought-firefox-will.php">Firefox is keeping its version number</a>.</li>
+				<li><a href="http://www.youtube.com/watch?v=AQcSFsQyct8">Matt Cutts explains dashes vs. underscores in URLs</a>.</li>
+				<li><a href="http://nodejs.org/#download">node.js v.0.5.x now ships with an .exe for Windows</a>.</li>
+				<li><a href="http://www.gamesetwatch.com/2011/08/super_mario_bros_x_portal_is_f.php">Mari0 is Super Mario Bros. meets Portal</a>.</li>
+			</ul>
+		</div>
+
+		<div class="slide title">
+		    <h1>Done &amp; Done</h1>
+		    <h2><a href="homework.html">Final Project!</a></h2>
+		</div>
+
+        <div class="layout" data-name="title">
+            <content></content>
+            <div class="footer">
+                <span class="left">Peter Wooley</span>
+                <span class="right">WDIM387A</span>
+                <span class="left">Twitter <a href="http://twitter.com/peterwooley">@peterwooley</a></span>
+                <span class="right"><a href="https://github.com/peterwooley/wdim387">Notes on GitHub</a></span>
+                <hr class="defloat" />
+            </div>
+        </div>
+
+        <div class="layout nofooter" data-name="default">
+            <content></content>
+        </div>
+    
+		<!-- Common Scripts -->
+		<script src="scripts/jquery.noisy.min.js"></script>
+		<script src="scripts/index.js"></script>
+	</body>
+</html>
