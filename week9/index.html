@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <title>WDIM387 Advanced Scripting &mdash; Week 9</title>
+        <!-- Slippy core file and dependencies -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" src="slippy/src/jquery.history.js"></script>
+        <script type="text/javascript" src="slippy/src/slippy.js"></script>
+        <!-- Slippy structural styles -->
+        <link type="text/css" rel="stylesheet" href="slippy/src/slippy.css"/>
+        <!-- Syntax highlighting core file  -->
+        <script type="text/javascript" src="slippy/src/highlighter/shCore.js"></script>
+        <!-- Syntax highlighting brushes, remove those you don't need -->
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushBash.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushCss.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushDiff.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushJScript.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPhp.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushPlain.js"></script>
+        <script type="text/javascript" src="slippy/src/highlighter/shBrushXml.js"></script>
+        <!-- Syntax highlighting styles-->
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="slippy/src/highlighter/shThemeRDark.css"/>
+
+
+		<!-- Common Styles -->
+		<link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light:regular&v1" rel="stylesheet" type="text/css" >
+		<link type="text/css" rel="stylesheet" href="styles/slippy-wdim.css" />
+
+        <!-- Slippy init code -->
+        <script type="text/javascript">
+            $(function() {
+                $(".slide").slippy();
+				SyntaxHighlighter.defaults.gutter = false;
+                SyntaxHighlighter.all();
+            });
+        </script>
+
+        <!-- Custom style for this deck -->
+        <style type="text/css">
+            .slide.nofooter {
+                border: 0;
+                background: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slide title" data-layout="title">
+            <h1>WDIM387 Advanced Scripting</h1>
+			<h2>Week 9</h1>
+        </div>
+
+		<div class="slide">
+		    <h1>Tidbits</h1>
+		    <ul>
+				<li>If you like node.js, you can <a href="http://www.redbubble.com/people/dmitrybaranovsk/t-shirts/7590663-node-js">get a node.js t-shirt!</a> (I couldn't find a Redis shirt.)</li>
+				<li>If you're on OS X, <a href="http://mxcl.github.com/homebrew/">Homebrew is a great package manager</a>.</li>
+				<li>We'll be playing with the Jade templating languge. <a href="http://scalate.fusesource.org/documentation/htmlConvert.html">Scalate is nice little app that converts HTML to Jade</a>.</li>
+			</ul>
+		</div>
+
+		<div class="slide">
+		    <h1>The 3 Ways to Create Objects</h1>
+			<p>There are three, count 'em three, ways to create objects (read:classes) in JavaScript:</p>
+			<ol>
+				<li>Literal</li>
+				<li>Constructor</code>
+				<li>Protoype</li>
+			</ol>
+			<p>Let's talk about what each one is good for.</p>
+		</div>
+
+		<div class="slide">
+		    <h1>Object Literals</h1>
+			<pre class="brush: js">var com = {};
+com.peterwooley = {};
+
+com.peterwooley.Utils = {
+	objLength: function(obj) {
+		var count = 0;
+
+		for(k in obj) {
+			if(obj.hasOwnProperty(k)) {
+				count++
+			}
+		}
+
+		return count;
+	}
+}
+
+com.peterwooley.Utils.objLength({a:1, b:2}); // Returns 2
+</pre>
+			<p>Object Literals are great for Namespaces and Singletons.</li>
+		</div>
+
+		<div class="slide">
+		    <h1>Object Constructors</h1>
+			<pre class="brush: js">function Apple(settings) {
+	if(window==this) {
+		return new Apple(settings);
+	}
+
+	var asleep = false;
+
+	this.shutdown = function() {
+		throw new Error(settings.name + " does not shutdown.");
+	};
+
+	this.sleep = function() { asleep = true;};
+	this.sleeping = function() { return asleep; };
+	this.wake = function() {
+		setTimeout(function() { asleep = false }, 6000);
+	};
+	
+};
+
+var air = Apple({name:"MacBook Air", size:.1, affordable: false});
+air.shutdown();
+</pre>
+			<p>Object Constructors are great for reusable objects (read: classes) that use private scope.</p>
+			<p><strong>Note</strong>: When a constructor is invoked, <em>copies</em> of the methods are created for every instance.</p>
+		</div>
+
+		<div class="slide">
+		    <h1>Object Protoype</h1>
+			<pre class="brush: js">function Apple(settings) {
+	if(window==this) {
+		return new Apple(settings);
+	}
+	this.settings = settings;
+	this.asleep = false;
+}
+
+Apple.prototype.shutdown = function() {
+	throw new Error(this.settings.name + " does not shutdown.");
+};
+
+Apple.prototype.sleep = function() { this.asleep = true;};
+Apple.prototype.wake = function() {
+	setTimeout($.proxy(function() {this.asleep = false}, this), 6000);
+};
+
+var air = Apple({name:"MacBook Air", size:.1, affordable: false});
+air.shutdown();
+</pre>
+			<p>Object Constructors are great for reusable objects (read: classes) that do not use private scope.</p>
+			<p><strong>Note</strong>: Managing <code>this</code> is even more tricky with prototypes than constructors. Use <a href="http://api.jquery.com/jQuery.proxy/"><code>$.proxy</code></a>.</p>
+		</div>
+
+		<div class="slide">
+		    <h1>Setting up node.js, npm and Redis</h1>
+				<li>Setup <a href="http://nodejs.org/">node.js</a> first. <a href="https://github.com/joyent/node/wiki/Installation">Joyent provides full instructions.</a></li>
+				<li>Install <a href="http://npmjs.org">npm</a>:
+				<pre class="brush: bash">curl http://npmjs.org/install.sh | sh</pre>
+			</li>
+				<li><a href="http://redis.io/download">Download Redis and follow their insallation instructions</a>.</li>
+		</div>
+
+		<div class="slide">
+			<h1>node.js Presentation</h1>
+			<p><a href="assets/node.js.pdf">Here's a copy of the node.js presentation.</a></p>
+		</div>
+
+		<div class="slide">
+			<h1>Porting CuteTypo to node.js</h1>
+			<p>I didn't get CuteTypo entirely ported. I got /name/get and /name/set, along with the index page and more validation than I could have imagined.</p>
+			<p>Still, with just that, we're in for a trippy adventure. Hold onto your keyboards.</p>
+			<p>You can grab the source at <a href="https://github.com/peterwooley/cutenode">https://github.com/peterwooley/cutenode</a>.</p>
+		</div>
+
+		<div class="slide">
+			<h1>No Node is an Island</h1>
+			<p>Along with node.js itself, we'll be using:</p>
+			<ul>
+				<li><a href="http://redis.io/">Redis</a></li>
+				<li><a href="http://expressjs.com/">Express.js</a></li>
+				<li><a href="http://jade-lang.com/">Jade</a></li>
+			</ul>
+		</div>
+
+		<div class="slide title">
+		    <h1>Let's Node it Up!</h1>
+		</div>
+
+		<div class="slide">
+			<h1>Nodeathon</h1>
+			<p>I wasn't able to get WebSockets into the CuteTypo port, so let's play with them here!</p>
+			<p>For those that have node.js and npm installed, cd into a <code>nodeathon</code> directory and run (sudo if necessary):
+				<pre class="brush: bash">npm install socket.io</pre>
+			</p>
+			<p>Together, we'll talk about WebSockets and get their example up and running.</p>
+			<p>Next, you'll have 30 minutes to make an app that allows multiple clients to connect and send messages that are immediately sent to all other connected clients.</p>
+		</div>
+
+		<div class="slide title">
+		    <h1>Done &amp; Done</h1>
+		    <h2><a href="homework.html">Final Project is due<br />Next Thursday at 6:00pm!</a></h2>
+		</div>
+
+        <div class="layout" data-name="title">
+            <content></content>
+            <div class="footer">
+                <span class="left">Peter Wooley</span>
+                <span class="right">WDIM387A</span>
+                <span class="left">Twitter <a href="http://twitter.com/peterwooley">@peterwooley</a></span>
+                <span class="right"><a href="https://github.com/peterwooley/wdim387">Notes on GitHub</a></span>
+                <hr class="defloat" />
+            </div>
+        </div>
+
+        <div class="layout nofooter" data-name="default">
+            <content></content>
+        </div>
+    
+		<!-- Common Scripts -->
+		<script src="scripts/jquery.noisy.min.js"></script>
+		<script src="scripts/index.js"></script>
+	</body>
+</html>
